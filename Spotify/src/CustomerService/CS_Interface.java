@@ -78,31 +78,31 @@ public class CS_Interface {
 		JPanel sidePanel = new JPanel();
 		sidePanel.setBackground(new Color(25, 24, 24));
 		
-		JPanel mainContent = new JPanel();
-		mainContent.setBackground(new Color(25, 24, 24));
-		
 		JPanel musicPlaying = new JPanel();
 		musicPlaying.setBackground(new Color(18, 18, 18));
+		
+		JPanel mainContent = new JPanel();
+		mainContent.setBackground(new Color(25, 24, 24));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addComponent(navbar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(sidePanel, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(mainContent, GroupLayout.DEFAULT_SIZE, 921, Short.MAX_VALUE)
+					.addComponent(sidePanel, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(mainContent, GroupLayout.DEFAULT_SIZE, 983, Short.MAX_VALUE)
 					.addContainerGap())
-				.addComponent(musicPlaying, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 1196, Short.MAX_VALUE)
+				.addComponent(musicPlaying, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 1258, Short.MAX_VALUE)
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(navbar, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(sidePanel, GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
-						.addComponent(mainContent, GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(sidePanel, GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+						.addComponent(mainContent, GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(musicPlaying, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE))
 		);
