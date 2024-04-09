@@ -1,6 +1,8 @@
 package Subscription;
 
+import Payment.*;
 import java.awt.EventQueue;
+
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Toolkit;
@@ -104,6 +106,8 @@ public class Subscription_Interface extends JFrame {
 		JButton loginBtn = new JButton("SUBSCRIBE");
 		loginBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Payment_Interface payInt = new Payment_Interface();
+				payInt.setVisible(true);
 			}
 		});
 		loginBtn.setBackground(new Color(211, 204, 227));
@@ -180,6 +184,12 @@ public class Subscription_Interface extends JFrame {
 		txtrmonthly_1.setBackground(new Color(217, 217, 217));
 		
 		JButton loginBtn_1 = new JButton("SUBSCRIBE");
+		loginBtn_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Payment_Interface payInt2 = new Payment_Interface();
+				payInt2.setVisible(true);
+			}
+		});
 		loginBtn_1.setForeground(Color.BLACK);
 		loginBtn_1.setFont(new Font("Arial", Font.BOLD, 20));
 		loginBtn_1.setBackground(new Color(211, 204, 227));
