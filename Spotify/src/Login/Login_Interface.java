@@ -1,5 +1,6 @@
 package Login;
 
+import Register.*;
 import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.Insets;
@@ -9,8 +10,11 @@ import javax.swing.ImageIcon;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 
 import javax.swing.GroupLayout;
@@ -32,36 +36,40 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class Login_Interface extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel container;
 	private JTextField uNameField;
 	private JTextField pWordField;
-
+	loginAction logAct = new loginAction();
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login_Interface frame = new Login_Interface();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
 	public Login_Interface() {
-		
+		addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if(!uNameField.contains(e.getPoint())) {
+					uNameField.setFocusable(false);
+				}
+				if(!pWordField.contains(e.getPoint())) {
+					pWordField.setFocusable(false);
+				}
+			}
+			
+		});	
 		setResizable(false);
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1113, 801);
 		container = new JPanel();
@@ -101,40 +109,58 @@ public class Login_Interface extends JFrame {
 		
 		uNameField = new JTextField();
 		uNameField.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		uNameField.setText("Username");
 		uNameField.setHorizontalAlignment(SwingConstants.LEFT);
 		uNameField.setColumns(2);
 		uNameField.setMargin(new Insets(0, 15, 0, 0));
 		
 		
-		pWordField = new JTextField();
+		pWordField = new JPasswordField();
 		pWordField.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		pWordField.setText("Password");
 		pWordField.setColumns(10);
 		pWordField.setMargin(new Insets(0, 15, 0, 0));
+		
+		logAct.textPlaceholder(uNameField, "Username", true);
+		
+		
+		logAct.passPlaceholder((JPasswordField) pWordField, "Password" , true);
 		
 		JButton loginBtn = new JButton("Login");
 		loginBtn.setBackground(new Color(255, 255, 255));
 		loginBtn.setForeground(new Color(0, 0, 0));
 		loginBtn.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		logAct.home(loginBtn);
+		
+		
+		JLabel register = new JLabel("<HTML><U>Don't  Have an Account?</U></HTML>");
+		register.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				Register_Interface regInt = new Register_Interface();
+				regInt.setVisible(true);
+			}
+		});
+		register.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		register.setForeground(new Color(0, 102, 255));
+		
+
 		
 		GroupLayout gl_formBox = new GroupLayout(formBox);
 		gl_formBox.setHorizontalGroup(
-			gl_formBox.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_formBox.createSequentialGroup()
-					.addGap(46)
-					.addGroup(gl_formBox.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(pWordField, Alignment.LEADING)
-						.addComponent(uNameField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE))
-					.addContainerGap(45, Short.MAX_VALUE))
-				.addGroup(gl_formBox.createSequentialGroup()
-					.addContainerGap(176, Short.MAX_VALUE)
-					.addComponent(lblNewLabel)
-					.addGap(165))
+			gl_formBox.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_formBox.createSequentialGroup()
 					.addContainerGap(163, Short.MAX_VALUE)
 					.addComponent(loginBtn, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
 					.addGap(155))
+				.addGroup(gl_formBox.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+					.addContainerGap())
+				.addGroup(gl_formBox.createSequentialGroup()
+					.addGap(46)
+					.addGroup(gl_formBox.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(pWordField, Alignment.LEADING)
+						.addComponent(uNameField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+						.addComponent(register, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(45, Short.MAX_VALUE))
 		);
 		gl_formBox.setVerticalGroup(
 			gl_formBox.createParallelGroup(Alignment.LEADING)
@@ -145,7 +171,9 @@ public class Login_Interface extends JFrame {
 					.addComponent(uNameField, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
 					.addGap(30)
 					.addComponent(pWordField, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-					.addGap(46)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(register)
+					.addGap(21)
 					.addComponent(loginBtn, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(70, Short.MAX_VALUE))
 		);

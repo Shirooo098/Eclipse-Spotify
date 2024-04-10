@@ -103,16 +103,16 @@ public class Subscription_Interface extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
 		
-		JButton loginBtn = new JButton("SUBSCRIBE");
-		loginBtn.addActionListener(new ActionListener() {
+		JButton subscribeBtn = new JButton("SUBSCRIBE");
+		subscribeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Payment_Interface payInt = new Payment_Interface();
 				payInt.setVisible(true);
 			}
 		});
-		loginBtn.setBackground(new Color(211, 204, 227));
-		loginBtn.setForeground(new Color(0, 0, 0));
-		loginBtn.setFont(new Font("Arial", Font.BOLD, 20));
+		subscribeBtn.setBackground(new Color(211, 204, 227));
+		subscribeBtn.setForeground(new Color(0, 0, 0));
+		subscribeBtn.setFont(new Font("Arial", Font.BOLD, 20));
 		
 		JTextArea txtrEnjoyUnlimitedAdfree = new JTextArea();
 		txtrEnjoyUnlimitedAdfree.setEditable(false);
@@ -143,7 +143,7 @@ public class Subscription_Interface extends JFrame {
 					.addGap(143))
 				.addGroup(Alignment.LEADING, gl_formBox.createSequentialGroup()
 					.addGap(131)
-					.addComponent(loginBtn, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
+					.addComponent(subscribeBtn, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(134, Short.MAX_VALUE))
 		);
 		gl_formBox.setVerticalGroup(
@@ -156,7 +156,7 @@ public class Subscription_Interface extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(txtrmonthly, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(loginBtn, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+					.addComponent(subscribeBtn, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
 					.addGap(42))
 		);
 		formBox.setLayout(gl_formBox);
@@ -183,16 +183,16 @@ public class Subscription_Interface extends JFrame {
 		txtrmonthly_1.setFont(new Font("Tahoma", Font.BOLD, 19));
 		txtrmonthly_1.setBackground(new Color(217, 217, 217));
 		
-		JButton loginBtn_1 = new JButton("SUBSCRIBE");
-		loginBtn_1.addActionListener(new ActionListener() {
+		JButton subscribeBtn1 = new JButton("SUBSCRIBE");
+		subscribeBtn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Payment_Interface payInt2 = new Payment_Interface();
 				payInt2.setVisible(true);
 			}
 		});
-		loginBtn_1.setForeground(Color.BLACK);
-		loginBtn_1.setFont(new Font("Arial", Font.BOLD, 20));
-		loginBtn_1.setBackground(new Color(211, 204, 227));
+		subscribeBtn1.setForeground(Color.BLACK);
+		subscribeBtn1.setFont(new Font("Arial", Font.BOLD, 20));
+		subscribeBtn1.setBackground(new Color(211, 204, 227));
 		GroupLayout gl_formBox_1 = new GroupLayout(formBox_1);
 		gl_formBox_1.setHorizontalGroup(
 			gl_formBox_1.createParallelGroup(Alignment.TRAILING)
@@ -204,7 +204,7 @@ public class Subscription_Interface extends JFrame {
 				.addGroup(Alignment.LEADING, gl_formBox_1.createSequentialGroup()
 					.addGap(131)
 					.addGroup(gl_formBox_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(loginBtn_1, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
+						.addComponent(subscribeBtn1, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtrmonthly_1, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(134, Short.MAX_VALUE))
 		);
@@ -218,7 +218,7 @@ public class Subscription_Interface extends JFrame {
 					.addGap(6)
 					.addComponent(txtrmonthly_1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(loginBtn_1, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+					.addComponent(subscribeBtn1, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(24, Short.MAX_VALUE))
 		);
 		formBox_1.setLayout(gl_formBox_1);

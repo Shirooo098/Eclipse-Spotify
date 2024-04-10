@@ -53,13 +53,6 @@ public class CS_Interface {
 	 * Create the application.
 	 */
 	public CS_Interface() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
 		frame = new JFrame();
 		frame.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -163,6 +156,10 @@ public class CS_Interface {
 		navbar.setLayout(gl_navbar);
 		frame.getContentPane().setLayout(groupLayout);
 		frame.setBounds(100, 100, 1244, 819);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+
 }
