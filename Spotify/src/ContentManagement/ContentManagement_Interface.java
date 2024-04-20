@@ -1,43 +1,27 @@
 package ContentManagement;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JFormattedTextField;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import javax.swing.JPanel;
-import java.awt.FlowLayout;
-import java.awt.Toolkit;
-import java.awt.GridLayout;
-import java.awt.Insets;
-import java.awt.GridBagLayout;
-import javax.swing.BoxLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTextField;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.JTextPane;
-import javax.swing.JTextArea;
-import javax.swing.JLabel;
-import javax.swing.border.EmptyBorder;
+import java.awt.Toolkit;
+
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JScrollPane;
 
-public class ContentManagement_Interface {
+public class ContentManagement_Interface extends JFrame {
 
-	private JFrame frame;
-	private JTextField search;
-
+	private static final long serialVersionUID = 1L;
+	private JPanel container;
+	private JTextField txtSearch;
+	private JPanel panel;
+	private JPanel panel_1;
 
 	/**
 	 * Launch the application.
@@ -46,8 +30,8 @@ public class ContentManagement_Interface {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ContentManagement_Interface window = new ContentManagement_Interface();
-					window.frame.setVisible(true);
+					ContentManagement_Interface frame = new ContentManagement_Interface();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -56,245 +40,232 @@ public class ContentManagement_Interface {
 	}
 
 	/**
-	 * Create the application.
+	 * Create the frame.
 	 */
 	public ContentManagement_Interface() {
-		initialize();
-	}
+		
+		setResizable(false);
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1113, 801);
+		container = new JPanel();
+		container.setForeground(new Color(0, 0, 0));
+		container.setBackground(new Color(18, 18, 18));
+		container.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
+		Toolkit toolkit = getToolkit();
+		Dimension size = toolkit.getScreenSize();
+		setLocation(size.width/2 - getWidth() / 2, size.height / 2 - getHeight() / 2 );
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setResizable(false);
-		frame.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				if (!search.contains(e.getPoint())) {
-					search.setFocusable(false);
-				}
-			}
-		});
-		frame.setBackground(new Color(35, 25, 66));
-		frame.getContentPane().setBackground(new Color(18, 18, 18));
+		setContentPane(container);
+		container.setLayout(null);
 		
 		JPanel navbar = new JPanel();
-		navbar.setBounds(0, 0, 1266, 68);
-		navbar.setBorder(new EmptyBorder(0, 0, 0, 0));
-		navbar.setBackground(new Color(35, 25, 66));
+		navbar.setBounds(0, 0, 1099, 71);
+		navbar.setBackground(new Color(35, 26, 66));
+		container.add(navbar);
+		navbar.setLayout(null);
 		
-		JPanel sidePanel = new JPanel();
-		sidePanel.setBounds(10, 79, 245, 627);
-		sidePanel.setBorder(new EmptyBorder(0, 0, 0, 0));
-		sidePanel.setBackground(new Color(25, 24, 24));
+		txtSearch = new JTextField();
+		txtSearch.setHorizontalAlignment(SwingConstants.LEFT);
+		txtSearch.setText("  Search");
+		txtSearch.setToolTipText("");
+		txtSearch.setBounds(23, 15, 234, 39);
+		navbar.add(txtSearch);
+		txtSearch.setColumns(10);
 		
-		JPanel mainContent = new JPanel();
-		mainContent.setBounds(273, 79, 983, 627);
-		mainContent.setForeground(new Color(255, 255, 255));
-		mainContent.setBorder(new EmptyBorder(0, 0, 0, 0));
-		mainContent.setBackground(new Color(25, 24, 24));
-		sidePanel.setLayout(null);
-		
-		JPanel panel = new JPanel();
-		panel.setBorder(new EmptyBorder(0, 0, 0, 0));
-		panel.setBackground(new Color(18, 18, 18));
-		panel.setBounds(0, 303, 250, 10);
-		sidePanel.add(panel);
+		panel = new JPanel();
+		panel.setBackground(new Color(25, 25, 24));
+		panel.setForeground(new Color(255, 255, 255));
+		panel.setBounds(10, 86, 272, 259);
+		container.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Playlists");
-		lblNewLabel_1.setBounds(20, 11, 80, 30);
-		lblNewLabel_1.setFont(new Font("Segoe UI", Font.BOLD, 20));
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		sidePanel.add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_9 = new JLabel("Random song ");
-		lblNewLabel_9.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		lblNewLabel_9.setForeground(new Color(255, 255, 255));
-		lblNewLabel_9.setBackground(new Color(255, 255, 255));
-		lblNewLabel_9.setBounds(10, 330, 180, 20);
-		sidePanel.add(lblNewLabel_9);
-		
-		JLabel lblNewLabel_10 = new JLabel("Memories");
-		lblNewLabel_10.setForeground(new Color(255, 255, 255));
-		lblNewLabel_10.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		lblNewLabel_10.setBounds(45, 515, 70, 14);
-		sidePanel.add(lblNewLabel_10);
-		
-		JLabel lblNewLabel_11 = new JLabel("Jayce");
-		lblNewLabel_11.setFont(new Font("Segoe UI", Font.BOLD, 11));
-		lblNewLabel_11.setForeground(new Color(192, 192, 192));
-		lblNewLabel_11.setBounds(150, 515, 46, 14);
-		sidePanel.add(lblNewLabel_11);
-		
-		JButton randomsongbtn = new JButton("");
-		randomsongbtn.setIcon(new ImageIcon("C:\\Users\\WinDows10\\Downloads\\Untitled design (2).png"));
-		randomsongbtn.setBorderPainted(false);
-		randomsongbtn.setBounds(45, 360, 150, 150);
-		sidePanel.add(randomsongbtn);
-		
-		JLabel lblNewLabel_12 = new JLabel("No playlists made.");
-		lblNewLabel_12.setForeground(new Color(128, 128, 128));
-		lblNewLabel_12.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		lblNewLabel_12.setBounds(45, 145, 140, 20);
-		sidePanel.add(lblNewLabel_12);
-		
-		JButton addplistbtn = new JButton("");
-		addplistbtn.setBorderPainted(false);
-		addplistbtn.setIcon(new ImageIcon("C:\\Users\\WinDows10\\Downloads\\addplist.png"));
-		addplistbtn.setBounds(195, 11, 40, 40);
-		sidePanel.add(addplistbtn);
-		mainContent.setLayout(null);
-		
-		JButton pandorabtn = new JButton("");
-	    pandorabtn.setBorderPainted(false);
-		pandorabtn.setForeground(new Color(18, 18, 18));
-		pandorabtn.setBackground(new Color(18, 18, 18));
-		pandorabtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		pandorabtn.setIcon(new ImageIcon("C:\\Users\\WinDows10\\Desktop\\pandora3.png"));
-		pandorabtn.setBounds(25, 77, 900, 250);
-		mainContent.add(pandorabtn);
-		
-		JButton artistbtn = new JButton("");
-		 artistbtn.setBorderPainted(false);
-		artistbtn.setIcon(new ImageIcon("C:\\Users\\WinDows10\\Desktop\\artist1.png"));
-		
-		artistbtn.setBounds(80, 400, 100, 100);
-		mainContent.add(artistbtn);
-		
-		JButton artistbtn2 = new JButton("");
-		artistbtn2.setBorderPainted(false);
-		artistbtn2.setIcon(new ImageIcon("C:\\Users\\WinDows10\\Desktop\\artist2.png"));
-		artistbtn2.setBounds(250, 400, 100, 100);
-		mainContent.add(artistbtn2);
-		
-		JButton artistbtn3 = new JButton("");
-		artistbtn3.setIcon(new ImageIcon("C:\\Users\\WinDows10\\Downloads\\artist3.png"));
-		artistbtn3.setBorderPainted(false);
-		artistbtn3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		artistbtn3.setBounds(420, 400, 100, 100);
-		mainContent.add(artistbtn3);
-		
-		JLabel lblNewLabel_2 = new JLabel("Artists");
-		lblNewLabel_2.setFont(new Font("Segoe UI", Font.BOLD, 20));
-		lblNewLabel_2.setForeground(new Color(255, 255, 255));
-		lblNewLabel_2.setBounds(20, 340, 75, 30);
-		mainContent.add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_3 = new JLabel("Featured\r\n");
-		lblNewLabel_3.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3.setFont(new Font("Segoe UI", Font.BOLD, 20));
-		lblNewLabel_3.setBounds(20, 41, 100, 25);
-		mainContent.add(lblNewLabel_3);
-		
-		JButton artistbtn4 = new JButton("");
-		artistbtn4.setIcon(new ImageIcon("C:\\Users\\WinDows10\\Downloads\\artist4.png"));
-		artistbtn4.setBorderPainted(false);
-		artistbtn4.setBounds(590, 400, 100, 100);
-		mainContent.add(artistbtn4);
-		
-		JButton artistbtn5 = new JButton("");
-		artistbtn5.setIcon(new ImageIcon("C:\\Users\\WinDows10\\Downloads\\artist4 (1).png"));
-		artistbtn5.setBorderPainted(false);
-		artistbtn5.setBounds(760, 400, 100, 100);
-		mainContent.add(artistbtn5);
-		
-		JLabel lblNewLabel_4 = new JLabel("David");
-		lblNewLabel_4.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		lblNewLabel_4.setForeground(new Color(255, 255, 255));
-		lblNewLabel_4.setBounds(110, 511, 46, 14);
-		mainContent.add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_5 = new JLabel("Charlotte\r\n");
-		lblNewLabel_5.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		lblNewLabel_5.setForeground(new Color(255, 255, 255));
-		lblNewLabel_5.setBounds(270, 514, 70, 14);
-		mainContent.add(lblNewLabel_5);
-		
-		JLabel lblNewLabel_6 = new JLabel("Jayce");
-		lblNewLabel_6.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		lblNewLabel_6.setForeground(new Color(255, 255, 255));
-		lblNewLabel_6.setBounds(450, 510, 46, 20);
-		mainContent.add(lblNewLabel_6);
-		
-		JLabel lblNewLabel_7 = new JLabel("Bone\r\n");
-		lblNewLabel_7.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		lblNewLabel_7.setForeground(new Color(255, 255, 255));
-		lblNewLabel_7.setBounds(620, 514, 46, 14);
-		mainContent.add(lblNewLabel_7);
-		
-		JLabel lblNewLabel_8 = new JLabel("Lows");
-		lblNewLabel_8.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		lblNewLabel_8.setForeground(new Color(255, 255, 255));
-		lblNewLabel_8.setBounds(795, 514, 46, 14);
-		mainContent.add(lblNewLabel_8);
-		
-		search = new JTextField("Search");
-		search.setForeground(new Color(68, 68, 68));
-		search.setBackground(new Color(217, 217, 217));
-		search.setMargin(new Insets(0, 10, 0, 0));
-		search.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		search.setFocusable(false);
-		search.addMouseListener(new MouseAdapter() {
-			
-			public void mouseClicked(MouseEvent e) {
-				search.setFocusable(true);
-				search.requestFocusInWindow();
-			}
-		});
-		
-		search.addFocusListener(new FocusAdapter() {
-			
-			public void focusGained(FocusEvent e) {
-				if(search.getText().equals("Search")) {
-					search.setFocusable(true);
-					search.setText("");
-				}
-				
-			}
-			
-			public void focusLost(FocusEvent e) {
-				if(search.getText().equals("")) {
-					search.setText("Search");
-				}
-			}
-		});
-		frame.getContentPane().setLayout(null);
-		search.setColumns(10);
-		
-		JLabel lblNewLabel = new JLabel("Hello Username!!");
+		JLabel lblNewLabel = new JLabel("Suggested Playlists");
+		lblNewLabel.setFont(new Font("Calibri", Font.BOLD, 20));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		GroupLayout gl_navbar = new GroupLayout(navbar);
-		gl_navbar.setHorizontalGroup(
-			gl_navbar.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_navbar.createSequentialGroup()
-					.addGap(56)
-					.addComponent(search, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 772, Short.MAX_VALUE)
-					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
-		gl_navbar.setVerticalGroup(
-			gl_navbar.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_navbar.createSequentialGroup()
-					.addGap(11)
-					.addGroup(gl_navbar.createParallelGroup(Alignment.BASELINE)
-						.addComponent(search, GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-						.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(11))
-		);
-		navbar.setLayout(gl_navbar);
-		frame.getContentPane().add(navbar);
-		frame.getContentPane().add(sidePanel);
-		frame.getContentPane().add(mainContent);
-		frame.setBounds(100, 100, 1244, 819);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		lblNewLabel.setBounds(10, 10, 168, 39);
+		panel.add(lblNewLabel);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(18, 18, 18));
+		panel_3.setBounds(10, 44, 252, 60);
+		panel.add(panel_3);
+		panel_3.setLayout(null);
+		
+		JLabel lblTambaySaBgc = new JLabel("Road Trip Playlist");
+		lblTambaySaBgc.setForeground(Color.WHITE);
+		lblTambaySaBgc.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		lblTambaySaBgc.setBounds(10, 10, 234, 39);
+		panel_3.add(lblTambaySaBgc);
+		
+		JPanel panel_3_1 = new JPanel();
+		panel_3_1.setBackground(new Color(18, 18, 18));
+		panel_3_1.setBounds(10, 114, 252, 60);
+		panel.add(panel_3_1);
+		panel_3_1.setLayout(null);
+		
+		JLabel lblStudyTime = new JLabel("Study Time");
+		lblStudyTime.setForeground(Color.WHITE);
+		lblStudyTime.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		lblStudyTime.setBounds(10, 10, 234, 39);
+		panel_3_1.add(lblStudyTime);
+		
+		JPanel panel_3_2 = new JPanel();
+		panel_3_2.setBackground(new Color(18, 18, 18));
+		panel_3_2.setBounds(10, 184, 252, 60);
+		panel.add(panel_3_2);
+		panel_3_2.setLayout(null);
+		
+		JLabel lblSeventeen = new JLabel("SEVENTEEN : Follow Tour");
+		lblSeventeen.setForeground(Color.WHITE);
+		lblSeventeen.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		lblSeventeen.setBounds(10, 10, 234, 39);
+		panel_3_2.add(lblSeventeen);
+		
+		panel_1 = new JPanel();
+		panel_1.setForeground(Color.WHITE);
+		panel_1.setBackground(new Color(25, 25, 24));
+		panel_1.setBounds(292, 86, 797, 579);
+		container.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JPanel panel_1_1 = new JPanel();
+		panel_1_1.setLayout(null);
+		panel_1_1.setForeground(Color.WHITE);
+		panel_1_1.setBackground(new Color(102, 102, 153));
+		panel_1_1.setBounds(22, 59, 754, 223);
+		panel_1.add(panel_1_1);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(10, 10, 200, 200);
+		panel_1_1.add(lblNewLabel_1);
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/bini.png"));
+		lblNewLabel_1.setIcon(img);
+		
+		JLabel lblSoty = new JLabel("PANTROPIKO");
+		lblSoty.setForeground(Color.WHITE);
+		lblSoty.setFont(new Font("Segoe UI", Font.BOLD, 45));
+		lblSoty.setBounds(220, 72, 335, 39);
+		panel_1_1.add(lblSoty);
+		
+		JLabel lblBini = new JLabel("BINI");
+		lblBini.setForeground(Color.WHITE);
+		lblBini.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		lblBini.setBounds(222, 121, 244, 39);
+		panel_1_1.add(lblBini);
+		
+		JLabel lblFeatured = new JLabel("Featured Song");
+		lblFeatured.setForeground(Color.WHITE);
+		lblFeatured.setFont(new Font("Segoe UI", Font.BOLD, 26));
+		lblFeatured.setBounds(22, 10, 234, 39);
+		panel_1.add(lblFeatured);
+		
+		JLabel lblFeaturedArtists = new JLabel("Top Artists");
+		lblFeaturedArtists.setForeground(Color.WHITE);
+		lblFeaturedArtists.setFont(new Font("Segoe UI", Font.BOLD, 26));
+		lblFeaturedArtists.setBounds(22, 324, 234, 39);
+		panel_1.add(lblFeaturedArtists);
+		
+		JLabel lblNewLabel_2_1 = new JLabel("1");
+		lblNewLabel_2_1.setBounds(22, 373, 125, 125);
+		panel_1.add(lblNewLabel_2_1);
+		ImageIcon img1 = new ImageIcon(this.getClass().getResource("/1.png"));
+		lblNewLabel_2_1.setIcon(img1);
+		
+		
+		JLabel lblNewLabel_2_2 = new JLabel("2");
+		lblNewLabel_2_2.setBounds(186, 373, 125, 125);
+		panel_1.add(lblNewLabel_2_2);
+		ImageIcon img2 = new ImageIcon(this.getClass().getResource("/2.png"));
+		lblNewLabel_2_2.setIcon(img2);
+		
+		JLabel lblNewLabel_2_3 = new JLabel("3");
+		lblNewLabel_2_3.setBounds(340, 373, 125, 125);
+		panel_1.add(lblNewLabel_2_3);
+		ImageIcon img3 = new ImageIcon(this.getClass().getResource("/3.png"));
+		lblNewLabel_2_3.setIcon(img3);
+		
+		JLabel lblNewLabel_2_4 = new JLabel("4");
+		lblNewLabel_2_4.setBounds(492, 373, 125, 125);
+		panel_1.add(lblNewLabel_2_4);
+		ImageIcon img4 = new ImageIcon(this.getClass().getResource("/4.png"));
+		lblNewLabel_2_4.setIcon(img4);
+	
+		
+		JLabel lblNewLabel_2_5 = new JLabel("5");
+		lblNewLabel_2_5.setBounds(651, 373, 125, 125);
+		panel_1.add(lblNewLabel_2_5);
+		ImageIcon img5 = new ImageIcon(this.getClass().getResource("/5.png"));
+		lblNewLabel_2_5.setIcon(img5);
+		
+		JLabel lblRanzu = new JLabel("RanzU");
+		lblRanzu.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRanzu.setForeground(Color.WHITE);
+		lblRanzu.setFont(new Font("Calibri", Font.BOLD, 20));
+		lblRanzu.setBounds(22, 508, 125, 39);
+		panel_1.add(lblRanzu);
+		
+		JLabel lblJarobelo = new JLabel("JaRobelo");
+		lblJarobelo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblJarobelo.setForeground(Color.WHITE);
+		lblJarobelo.setFont(new Font("Calibri", Font.BOLD, 20));
+		lblJarobelo.setBounds(186, 508, 125, 39);
+		panel_1.add(lblJarobelo);
+		
+		JLabel lblRanzu_1_1 = new JLabel("CokeTskaJd");
+		lblRanzu_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRanzu_1_1.setForeground(Color.WHITE);
+		lblRanzu_1_1.setFont(new Font("Calibri", Font.BOLD, 20));
+		lblRanzu_1_1.setBounds(340, 508, 125, 39);
+		panel_1.add(lblRanzu_1_1);
+		
+		JLabel lblRanzu_1_2 = new JLabel("Saint Monard");
+		lblRanzu_1_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRanzu_1_2.setForeground(Color.WHITE);
+		lblRanzu_1_2.setFont(new Font("Calibri", Font.BOLD, 20));
+		lblRanzu_1_2.setBounds(492, 508, 125, 39);
+		panel_1.add(lblRanzu_1_2);
+		
+		JLabel lblRanzu_1_2_1 = new JLabel("xXxCarloxXx");
+		lblRanzu_1_2_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRanzu_1_2_1.setForeground(Color.WHITE);
+		lblRanzu_1_2_1.setFont(new Font("Calibri", Font.BOLD, 20));
+		lblRanzu_1_2_1.setBounds(651, 508, 125, 39);
+		panel_1.add(lblRanzu_1_2_1);
+
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setLayout(null);
+		panel_2.setForeground(Color.WHITE);
+		panel_2.setBackground(new Color(25, 25, 24));
+		panel_2.setBounds(10, 368, 272, 386);
+		container.add(panel_2);
+		
+		JLabel lblNowPlaying = new JLabel("Now Playing");
+		lblNowPlaying.setForeground(Color.WHITE);
+		lblNowPlaying.setFont(new Font("Calibri", Font.BOLD, 20));
+		lblNowPlaying.setBounds(10, 10, 168, 39);
+		panel_2.add(lblNowPlaying);
+		
+		JLabel lblNewLabel_1_2 = new JLabel("sdsdsd");
+		lblNewLabel_1_2.setBounds(10, 48, 250, 250);
+		panel_2.add(lblNewLabel_1_2);
+		ImageIcon img0 = new ImageIcon(this.getClass().getResource("/jarlfile.png"));
+		lblNewLabel_1_2.setIcon(img0);
+		
+		JLabel lblJalosi = new JLabel("JALOSI (Slow and Reverb)");
+		lblJalosi.setForeground(Color.WHITE);
+		lblJalosi.setFont(new Font("Segoe UI", Font.BOLD, 17));
+		lblJalosi.setBounds(10, 308, 234, 39);
+		panel_2.add(lblJalosi);
+		
+		JLabel lblJarlRobelo = new JLabel("Jarl Robelo");
+		lblJarlRobelo.setForeground(Color.WHITE);
+		lblJarlRobelo.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		lblJarlRobelo.setBounds(10, 337, 234, 39);
+		panel_2.add(lblJarlRobelo);
+		
+		
 	}
 }

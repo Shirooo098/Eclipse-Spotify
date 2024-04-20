@@ -87,8 +87,7 @@ public class CS_Interface extends JFrame {
 		JScrollPane scroll = new JScrollPane(textArea);
 		scroll.setBounds(85, 271, 531, 213);
 		
-		
-		this.add(scroll);
+	
 		panel.add(scroll);
 
 		
