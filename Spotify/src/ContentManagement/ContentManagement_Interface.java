@@ -12,8 +12,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JComboBox;
+
 
 public class ContentManagement_Interface extends JFrame {
 
@@ -22,7 +31,8 @@ public class ContentManagement_Interface extends JFrame {
 	private JTextField txtSearch;
 	private JPanel panel;
 	private JPanel panel_1;
-
+	Timer tm;
+	Integer pl = 60;
 	/**
 	 * Launch the application.
 	 */
@@ -44,10 +54,11 @@ public class ContentManagement_Interface extends JFrame {
 	 */
 	public ContentManagement_Interface() {
 		
+		final cmAction cmAct = new cmAction();
 		setResizable(false);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1113, 801);
+		setBounds(100, 100, 1108, 786);
 		container = new JPanel();
 		container.setForeground(new Color(0, 0, 0));
 		container.setBackground(new Color(18, 18, 18));
@@ -67,12 +78,98 @@ public class ContentManagement_Interface extends JFrame {
 		navbar.setLayout(null);
 		
 		txtSearch = new JTextField();
+		txtSearch.setBounds(23, 15, 234, 39);
 		txtSearch.setHorizontalAlignment(SwingConstants.LEFT);
 		txtSearch.setText("  Search");
 		txtSearch.setToolTipText("");
-		txtSearch.setBounds(23, 15, 234, 39);
 		navbar.add(txtSearch);
 		txtSearch.setColumns(10);
+		
+		JComboBox<String> comboBox = new JComboBox<String>(cmAct.getOptions());
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JComboBox<String> combo = (JComboBox<String>) e.getSource();
+				String selectedOption = (String) combo.getSelectedItem();
+				
+				switch (selectedOption) {
+					case "Home":
+						cmAct.selectedHome();
+						
+						break;
+					case "Subscription":
+						cmAct.selectedSub();
+						break;
+					case "Contact Us":
+						cmAct.selectedCS();
+						break;
+					case "Logout" :
+						
+						break;
+				}
+			}
+		});
+		
+		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		comboBox.setBounds(908, 15, 128, 34);
+		navbar.add(comboBox);
+		
+//		final JPanel dropdownBtn = new JPanel();
+//		dropdownBtn.setBounds(962, 15, 111, 50);
+//		navbar.add(dropdownBtn);
+//		container.setComponentZOrder(dropdownBtn, 0);
+//		dropdownBtn.setLayout(null);
+//		
+//		JButton subBtn = new JButton("Subscription");
+//		subBtn.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				
+//			}
+//		});
+//		subBtn.setBounds(0, 47, 111, 50);
+//		dropdownBtn.add(subBtn);
+//		
+//		JButton csBtn = new JButton("Contact Us");
+//		csBtn.setBounds(0, 96, 111, 50);
+//		dropdownBtn.add(csBtn);
+//		
+//		JButton logoutBtn = new JButton("Logout");
+//		logoutBtn.setBounds(0, 143, 111, 50);
+//		dropdownBtn.add(logoutBtn);
+//		
+//		final JButton homeBtn = new JButton("Home");
+//		
+//		tm = new Timer(10, new ActionListener(){
+//			public void actionPerformed(ActionEvent e) {
+//				// stops if the height is 199.9
+//				if(pl > 199.9) {
+//					tm.stop();
+//				}else {
+//				// Increments the height until 199.9
+//					dropdownBtn.setSize(dropdownBtn.getWidth(), pl);
+//					pl += 10;
+//				}
+//				
+//			}
+//		});
+//		homeBtn.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseEntered(MouseEvent e) {
+//				tm.start();
+//			}
+//			@Override
+//		    public void mouseExited(MouseEvent e) {
+//		        // Check if the mouse exited the homeBtn and not entered the dropdown panel
+//		        if (e.getX() < 0 || e.getY() < 0 || e.getX() >= dropdownBtn.getWidth() || e.getY() >= dropdownBtn.getHeight()) {
+//		            tm.stop();
+//		            dropdownBtn.setSize(dropdownBtn.getWidth(), 50);
+//		            pl = 50; 
+//		        }
+//		    }
+//		});
+//		homeBtn.setBounds(0, 0, 111, 53);
+//		dropdownBtn.add(homeBtn);
+		
+		
 		
 		panel = new JPanel();
 		panel.setBackground(new Color(25, 25, 24));
@@ -239,7 +336,7 @@ public class ContentManagement_Interface extends JFrame {
 		panel_2.setLayout(null);
 		panel_2.setForeground(Color.WHITE);
 		panel_2.setBackground(new Color(25, 25, 24));
-		panel_2.setBounds(10, 368, 272, 386);
+		panel_2.setBounds(10, 356, 272, 395);
 		container.add(panel_2);
 		
 		JLabel lblNowPlaying = new JLabel("Now Playing");

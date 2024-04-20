@@ -1,6 +1,6 @@
 package Login;
 
-import Subscription.*;
+import ContentManagement.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -79,8 +79,8 @@ public class loginAction {
 	public void home(JButton btn) {
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Subscription_Interface subInt = new Subscription_Interface();
-				subInt.setVisible(true);
+				ContentManagement_Interface conInt = new ContentManagement_Interface();
+				conInt.setVisible(true);
 			}
 		});
 			

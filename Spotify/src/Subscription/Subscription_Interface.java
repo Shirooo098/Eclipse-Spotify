@@ -25,6 +25,9 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
+
+import ContentManagement.ContentManagement_Interface;
+
 import javax.swing.BoxLayout;
 import java.awt.CardLayout;
 import javax.swing.SpringLayout;
@@ -37,12 +40,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import java.awt.SystemColor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Subscription_Interface extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel container;
-
+	ContentManagement_Interface cmInt = new ContentManagement_Interface();
 	/**
 	 * Launch the application.
 	 */
@@ -235,6 +240,12 @@ public class Subscription_Interface extends JFrame {
 		Image scaledImage = returnImg.getImage().getScaledInstance(50, 70, Image.SCALE_DEFAULT);
 		ImageIcon returnIcon = new ImageIcon(scaledImage);
 		JLabel returnBtn = new JLabel(returnIcon);
+		returnBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cmInt.setVisible(true);
+			}
+		});
 		returnBtn.setBounds(10, 41, 84, 52);
 		returnBtn.setHorizontalAlignment(SwingConstants.CENTER);
 		returnBtn.setHorizontalTextPosition(SwingConstants.CENTER);

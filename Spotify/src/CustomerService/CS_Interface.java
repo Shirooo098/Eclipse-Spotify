@@ -3,6 +3,7 @@ package CustomerService;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
+import ContentManagement.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,9 +13,13 @@ import javax.swing.text.AbstractDocument;
 
 import java.awt.Color;
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -22,11 +27,15 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class CS_Interface extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	ContentManagement_Interface cmInt = new ContentManagement_Interface();
+	
 
 	/**
 	 * Launch the application.
@@ -48,7 +57,6 @@ public class CS_Interface extends JFrame {
 	 * Create the frame.
 	 */
 	public CS_Interface() {
-		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 816, 771);
@@ -68,6 +76,20 @@ public class CS_Interface extends JFrame {
 		navbar.setBackground(new Color(35, 25, 66));
 		contentPane.add(navbar);
 		navbar.setLayout(null);
+		
+		JLabel logo = new JLabel("");
+		logo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cmInt.setVisible(true);
+			}
+		});
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/Logo.png"));
+		Image modifiedLogo = img.getImage().getScaledInstance(100, 50, java.awt.Image.SCALE_SMOOTH);
+		logo.setBounds(20, 11, 121, 46);
+		logo.setIcon(new ImageIcon(modifiedLogo));
+		navbar.add(logo);
+		
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(25, 25, 24));
@@ -116,6 +138,19 @@ public class CS_Interface extends JFrame {
 		});
 		submitBtn.setBounds(290, 505, 117, 43);
 		panel.add(submitBtn);
+		
+		JLabel backBtn = new JLabel("");
+		backBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cmInt.setVisible(true);
+			}
+		});
+		ImageIcon backImg = new ImageIcon(this.getClass().getResource("/backImg.png"));
+		Image modifiedBackBtn = backImg.getImage().getScaledInstance(40, 50, java.awt.Image.SCALE_SMOOTH);
+		backBtn.setBounds(10, 11, 39, 36);
+		backBtn.setIcon(new ImageIcon(modifiedBackBtn));
+		panel.add(backBtn);
 		
 		
 	}
