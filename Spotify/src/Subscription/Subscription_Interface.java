@@ -230,5 +230,16 @@ public class Subscription_Interface extends JFrame {
 		lblChooseYourPlan.setFont(new Font("Tahoma", Font.BOLD, 29));
 		lblChooseYourPlan.setBounds(321, 189, 425, 35);
 		container.add(lblChooseYourPlan);
+		
+		ImageIcon returnImg = new ImageIcon(getClass().getResource("/backImg.png"));
+		Image scaledImage = returnImg.getImage().getScaledInstance(50, 70, Image.SCALE_DEFAULT);
+		ImageIcon returnIcon = new ImageIcon(scaledImage);
+		JLabel returnBtn = new JLabel(returnIcon);
+		returnBtn.setBounds(10, 41, 84, 52);
+		returnBtn.setHorizontalAlignment(SwingConstants.CENTER);
+		returnBtn.setHorizontalTextPosition(SwingConstants.CENTER);
+		returnBtn.setVerticalAlignment(SwingConstants.CENTER);
+		returnBtn.setVerticalTextPosition(SwingConstants.CENTER);
+		container.add(returnBtn);
 	}
 }
