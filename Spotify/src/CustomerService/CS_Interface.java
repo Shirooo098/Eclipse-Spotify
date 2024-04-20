@@ -1,37 +1,32 @@
 package CustomerService;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
-import javax.swing.JFormattedTextField;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import javax.swing.JPanel;
-import java.awt.FlowLayout;
-import java.awt.Toolkit;
-import java.awt.GridLayout;
-import java.awt.Insets;
-import java.awt.GridBagLayout;
-import javax.swing.BoxLayout;
+import javax.swing.JScrollPane;
+import javax.swing.border.EmptyBorder;
+import javax.swing.text.AbstractDocument;
+
+import java.awt.Color;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.Font;
-import javax.swing.JTextPane;
-import javax.swing.JTextArea;
+import java.awt.Insets;
 import javax.swing.JLabel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JTextArea;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class CS_Interface {
+public class CS_Interface extends JFrame {
 
-	private JFrame frame;
-	private JTextField search;
-
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -40,8 +35,8 @@ public class CS_Interface {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CS_Interface window = new CS_Interface();
-					window.frame.setVisible(true);
+					CS_Interface frame = new CS_Interface();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,116 +45,79 @@ public class CS_Interface {
 	}
 
 	/**
-	 * Create the application.
+	 * Create the frame.
 	 */
 	public CS_Interface() {
-		frame = new JFrame();
-		frame.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				if (!search.contains(e.getPoint())) {
-					search.setFocusable(false);
-				}
-			}
-		});
-		frame.setBackground(new Color(35, 25, 66));
-		frame.getContentPane().setBackground(new Color(18, 18, 18));
+		
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 816, 771);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(18, 18, 18));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
+		Toolkit toolkit = getToolkit();
+		Dimension size = toolkit.getScreenSize();
+		setLocation(size.width/2 - getWidth() / 2, size.height / 2 - getHeight() / 2 );
+		
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		JPanel navbar = new JPanel();
+		navbar.setBounds(0, 0, 800, 68);
 		navbar.setBackground(new Color(35, 25, 66));
+		contentPane.add(navbar);
+		navbar.setLayout(null);
 		
-		JPanel sidePanel = new JPanel();
-		sidePanel.setBackground(new Color(25, 24, 24));
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(25, 25, 24));
+		panel.setBounds(49, 101, 700, 580);
+		contentPane.add(panel);
+		panel.setLayout(null);
 		
-		JPanel musicPlaying = new JPanel();
-		musicPlaying.setBackground(new Color(18, 18, 18));
+		JTextArea textArea = new JTextArea("Report your problem here ");
+		textArea.setRows(5);
+		textArea.setColumns(9);
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+		textArea.setFont(new Font("Calibri", Font.PLAIN, 16));
+		textArea.setBounds(85, 271, 531, 213);
+		textArea.setMargin(new Insets(15, 15, 15, 15));
+
+		JScrollPane scroll = new JScrollPane(textArea);
+		scroll.setBounds(85, 271, 531, 213);
 		
-		JPanel mainContent = new JPanel();
-		mainContent.setBackground(new Color(25, 24, 24));
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addComponent(navbar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(sidePanel, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(mainContent, GroupLayout.DEFAULT_SIZE, 983, Short.MAX_VALUE)
-					.addContainerGap())
-				.addComponent(musicPlaying, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 1258, Short.MAX_VALUE)
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(navbar, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(sidePanel, GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
-						.addComponent(mainContent, GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(musicPlaying, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE))
-		);
 		
-		search = new JTextField("Search");
-		search.setForeground(new Color(68, 68, 68));
-		search.setBackground(new Color(217, 217, 217));
-		search.setMargin(new Insets(0, 10, 0, 0));
-		search.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		search.setFocusable(false);
-		search.addMouseListener(new MouseAdapter() {
-			
-			public void mouseClicked(MouseEvent e) {
-				search.setFocusable(true);
-				search.requestFocusInWindow();
-			}
-		});
+		this.add(scroll);
+		panel.add(scroll);
+
 		
-		search.addFocusListener(new FocusAdapter() {
-			
-			public void focusGained(FocusEvent e) {
-				if(search.getText().equals("Search")) {
-					search.setFocusable(true);
-					search.setText("");
-				}
+		
+		
+		JLabel lblNewLabel_2 = new JLabel("Report a Problem: ");
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblNewLabel_2.setBounds(85, 205, 259, 55);
+		panel.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_1 = new JLabel("Customer Support");
+		lblNewLabel_1.setBounds(130, 35, 447, 105);
+		panel.add(lblNewLabel_1);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 48));
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		
+		
+		
+		JButton submitBtn = new JButton("Submit");
+		submitBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
 				
 			}
-			
-			public void focusLost(FocusEvent e) {
-				if(search.getText().equals("")) {
-					search.setText("Search");
-				}
-			}
 		});
-		search.setColumns(10);
+		submitBtn.setBounds(290, 505, 117, 43);
+		panel.add(submitBtn);
 		
-		JLabel lblNewLabel = new JLabel("Hello Username!!");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		GroupLayout gl_navbar = new GroupLayout(navbar);
-		gl_navbar.setHorizontalGroup(
-			gl_navbar.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_navbar.createSequentialGroup()
-					.addGap(56)
-					.addComponent(search, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 772, Short.MAX_VALUE)
-					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
-		gl_navbar.setVerticalGroup(
-			gl_navbar.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_navbar.createSequentialGroup()
-					.addGap(11)
-					.addGroup(gl_navbar.createParallelGroup(Alignment.BASELINE)
-						.addComponent(search, GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-						.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(11))
-		);
-		navbar.setLayout(gl_navbar);
-		frame.getContentPane().setLayout(groupLayout);
-		frame.setBounds(100, 100, 1244, 819);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-
+		
+	}
 }
