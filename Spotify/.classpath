@@ -11,5 +11,6 @@
 			<accessrule kind="accessible" pattern="com/apple/eawt/**"/>
 		</accessrules>
 	</classpathentry>
+	<classpathentry kind="lib" path="D:/Chrome Downloads/mysql-connector-j-8.0.31.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

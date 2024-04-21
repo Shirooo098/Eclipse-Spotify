@@ -7,12 +7,49 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class loginAction {
+	static final String DB_URL = "jdbc:mysql://localhost:3306/spotify";
+	static final String USER = "root";
+	static final String PASS = "Arslansenki00";
+	
+	public static boolean login(String username, String password) {
+		String sql;
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			stmt = conn.createStatement();
+						
+			sql = "SELECT * FROM user WHERE username = '" + username +
+					"' AND password = '" + password + "'";
+			rs = stmt.executeQuery(sql);
+			if(rs.next()) {
+				return true;
+			}
+			
+			else {
+				JOptionPane.showMessageDialog(null, "Invalid Username or Password");
+				return false;
+			}
+		}catch(Exception exc) {
+			exc.printStackTrace();
+		}
+		return false;	
+		
+		
+	}
 	
 	public void textPlaceholder(final JTextField tField, String placeholder, boolean clickFocus) {
 		tField.setText(placeholder);
@@ -76,16 +113,6 @@ public class loginAction {
 		}
 	}
 	
-	public void home(JButton btn) {
-		btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ContentManagement_Interface conInt = new ContentManagement_Interface();
-				conInt.setVisible(true);
-			}
-		});
-			
-		
-	}
 	
 	
 }	

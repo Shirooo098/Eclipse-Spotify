@@ -27,6 +27,9 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
+
+import ContentManagement.ContentManagement_Interface;
+
 import javax.swing.BoxLayout;
 import java.awt.CardLayout;
 import javax.swing.SpringLayout;
@@ -40,6 +43,10 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -48,7 +55,7 @@ public class Login_Interface extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel container;
 	private JTextField uNameField;
-	private JTextField pWordField;
+	private JPasswordField pWordField;
 	loginAction logAct = new loginAction();
 	/**
 	 * Launch the application.
@@ -57,6 +64,9 @@ public class Login_Interface extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+
+
+	
 	public Login_Interface() {
 		addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -125,10 +135,25 @@ public class Login_Interface extends JFrame {
 		logAct.passPlaceholder((JPasswordField) pWordField, "Password" , true);
 		
 		JButton loginBtn = new JButton("Login");
+		loginBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String username = uNameField.getText();
+				String password = pWordField.getText();
+				
+				if(logAct.login(username, password)) {
+					ContentManagement_Interface cmInt = new ContentManagement_Interface();
+                    cmInt.setVisible(true);
+                    dispose();
+                    
+				}
+			}
+		});
+		
 		loginBtn.setBackground(new Color(255, 255, 255));
 		loginBtn.setForeground(new Color(0, 0, 0));
 		loginBtn.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		logAct.home(loginBtn);
+		
 		
 		
 		JLabel register = new JLabel("<HTML><U>Don't  Have an Account?</U></HTML>");
@@ -136,6 +161,7 @@ public class Login_Interface extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				Register_Interface regInt = new Register_Interface();
 				regInt.setVisible(true);
+				dispose();
 			}
 		});
 		register.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

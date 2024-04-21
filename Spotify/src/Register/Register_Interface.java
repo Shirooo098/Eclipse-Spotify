@@ -1,6 +1,8 @@
 package Register;
 
 import Login.*;
+import ContentManagement.ContentManagement_Interface;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -14,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -22,6 +25,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import Login.Login_Interface;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -33,7 +39,8 @@ public class Register_Interface extends JFrame {
 	private JTextField emailField;
 	private JTextField uNameField;
 	private JTextField confirmPw;
-	private JTextField textField_1;
+	private JTextField pWordField;
+	RegisterAction regAct = new RegisterAction();
 
 	/**
 	 * Launch the application.
@@ -109,10 +116,40 @@ public class Register_Interface extends JFrame {
 		uNameField.setColumns(10);
 		uNameField.setMargin(new Insets(0, 15, 0, 0));
 		
-		JButton loginBtn = new JButton("Register");
-		loginBtn.setBackground(new Color(255, 255, 255));
-		loginBtn.setForeground(new Color(0, 0, 0));
-		loginBtn.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		JButton registerBtn = new JButton("Register");
+		registerBtn.setBackground(new Color(255, 255, 255));
+		registerBtn.setForeground(new Color(0, 0, 0));
+		registerBtn.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		registerBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String email = emailField.getText();
+				String username = uNameField.getText();
+				String password = pWordField.getText();
+				String conPass = confirmPw.getText();
+				
+				if(email == null || username == null || 
+						password == null || conPass == null) {
+					JOptionPane.showMessageDialog(null, "Fields must have an inputs");
+				}
+				else if(!password.equals(conPass)) {
+					JOptionPane.showMessageDialog(null, "Incorrect Confirm Password");
+				}
+				else if(password.length() < 8) {
+					JOptionPane.showMessageDialog(null,
+							"Password must have more than 8 Characters");
+				} else {
+					regAct.register(email, username, password);
+					JOptionPane.showMessageDialog(null, "Registered Succesfully!");
+					ContentManagement_Interface conInt = new ContentManagement_Interface();
+					conInt.setVisible(true);
+					dispose();
+					
+				}
+				
+			}
+		});
 		
 		confirmPw = new JTextField();
 		confirmPw.setText("Confirm Password");
@@ -120,11 +157,11 @@ public class Register_Interface extends JFrame {
 		confirmPw.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		confirmPw.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setText("Create Password");
-		textField_1.setMargin(new Insets(0, 15, 0, 0));
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textField_1.setColumns(10);
+		pWordField = new JTextField();
+		pWordField.setText("Create Password");
+		pWordField.setMargin(new Insets(0, 15, 0, 0));
+		pWordField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		pWordField.setColumns(10);
 		
 		JLabel login = new JLabel("<HTML><U>Already Have an Account</U></HTML>");
 		login.addMouseListener(new MouseAdapter() {
@@ -145,7 +182,7 @@ public class Register_Interface extends JFrame {
 					.addContainerGap())
 				.addGroup(gl_formBox.createSequentialGroup()
 					.addContainerGap(166, Short.MAX_VALUE)
-					.addComponent(loginBtn, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+					.addComponent(registerBtn, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
 					.addGap(152))
 				.addGroup(gl_formBox.createSequentialGroup()
 					.addGap(46)
@@ -153,7 +190,7 @@ public class Register_Interface extends JFrame {
 						.addComponent(login)
 						.addGroup(gl_formBox.createParallelGroup(Alignment.TRAILING, false)
 							.addComponent(confirmPw, Alignment.LEADING)
-							.addComponent(textField_1)
+							.addComponent(pWordField)
 							.addComponent(uNameField, Alignment.LEADING)
 							.addComponent(emailField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)))
 					.addContainerGap(45, Short.MAX_VALUE))
@@ -168,13 +205,13 @@ public class Register_Interface extends JFrame {
 					.addGap(18)
 					.addComponent(uNameField, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+					.addComponent(pWordField, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(confirmPw, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(login, GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(loginBtn, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+					.addComponent(registerBtn, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
 					.addGap(45))
 		);
 		formBox.setLayout(gl_formBox);
