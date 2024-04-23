@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -66,6 +68,13 @@ public class Payment_Interface extends JFrame {
         btnGcash.setBounds(214, 448, 663, 97);
         mainPanel.add(btnGcash);
 
+        btnGcash.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Payment_E_Wallet eWallet = new Payment_E_Wallet();
+                eWallet.setVisible(true);
+                dispose();
+            }
+        });
         JButton btnNewButton = new JButton("CREDIT OR DEBIT CARD");
         btnNewButton.setBackground(new Color(217, 217, 217));
         btnNewButton.setFont(new Font("Segoe UI", Font.BOLD, 20));

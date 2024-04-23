@@ -1,6 +1,7 @@
 package Login;
 
 import ContentManagement.*;
+import Register.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -8,12 +9,84 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class loginAction {
+public class loginAction  {
 	
+	private String username;
+	private String password;
+	
+	
+	public String getUsername() {
+		return username;
+		
+	}
+
+	public String setUsername(String username) {
+		return this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public String setPassword(String password) {
+		return this.password = password;
+	}
+
+	static final String DB_URL = "jdbc:mysql://localhost:3306/spotify";
+	static final String USER = "root";
+	static final String PASS = "AandromedaNnebula11";
+	
+	RegisterAction regAct = new RegisterAction();
+	
+	public boolean login() {
+		Connection conn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		boolean loggedIn = false;
+		
+		try {
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+		
+			String sql = "SELECT * FROM user WHERE username = ? AND password = ?";
+			
+			
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, username);
+			pst.setString(2, password);
+			
+			rs = pst.executeQuery();
+			
+			loggedIn = rs.next();
+			
+;		}catch(SQLException exc) {
+			exc.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pst != null) pst.close();
+				if(conn != null) conn.close();
+			} catch(SQLException exc1) { 
+				exc1.printStackTrace();
+			}
+		}
+		
+		return loggedIn;
+	}
+	
+
 	public void textPlaceholder(final JTextField tField, String placeholder, boolean clickFocus) {
 		tField.setText(placeholder);
 		

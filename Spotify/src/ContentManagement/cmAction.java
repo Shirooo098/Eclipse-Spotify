@@ -5,7 +5,7 @@ import CustomerService.*;
 
 public class cmAction {
 	
-	private String options[] = {"Home", "Subscription", "Contact Us", "Logout"};
+	private String options[] = {"Home", "Subscription", "Contact Us", "Account", "Logout"};
 
 	public String[] getOptions() {
 		return options;
@@ -22,6 +22,10 @@ public class cmAction {
 	public void selectedSub() {
 		Subscription_Interface subInt = new Subscription_Interface();
 		subInt.setVisible(true);
+	}
+	public void selectedAcc() {
+		CS_Interface csInt = new CS_Interface();
+		csInt.setVisible(true);
 	}
 	public void selectedCS() {
 		CS_Interface csInt = new CS_Interface();

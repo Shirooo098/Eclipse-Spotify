@@ -72,7 +72,7 @@ public class Subscription_Interface extends JFrame {
 		setResizable(false);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1113, 801);
+		setBounds(100, 100, 1128, 820);
 		container = new JPanel();
 		container.setBackground(new Color(14, 10, 26));
 		container.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -99,7 +99,7 @@ public class Subscription_Interface extends JFrame {
 		// FORM FORM FORM
 		
 		JPanel formBox = new JPanel();
-		formBox.setBounds(100, 273, 427, 388);
+		formBox.setBounds(100, 273, 916, 388);
 		container.add(formBox);
 		formBox.setBackground(new Color(217, 217, 217));
 		
@@ -113,6 +113,7 @@ public class Subscription_Interface extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Payment_Interface payInt = new Payment_Interface();
 				payInt.setVisible(true);
+				dispose();
 			}
 		});
 		subscribeBtn.setBackground(new Color(211, 204, 227));
@@ -131,45 +132,10 @@ public class Subscription_Interface extends JFrame {
 		txtrmonthly.setBackground(new Color(217, 217, 217));
 		txtrmonthly.setText("₱149/monthly");
 		
-		GroupLayout gl_formBox = new GroupLayout(formBox);
-		gl_formBox.setHorizontalGroup(
-			gl_formBox.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_formBox.createSequentialGroup()
-					.addGap(33)
-					.addComponent(txtrEnjoyUnlimitedAdfree, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(46, Short.MAX_VALUE))
-				.addGroup(gl_formBox.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(gl_formBox.createSequentialGroup()
-					.addContainerGap(140, Short.MAX_VALUE)
-					.addComponent(txtrmonthly, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(143))
-				.addGroup(Alignment.LEADING, gl_formBox.createSequentialGroup()
-					.addGap(131)
-					.addComponent(subscribeBtn, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(134, Short.MAX_VALUE))
-		);
-		gl_formBox.setVerticalGroup(
-			gl_formBox.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_formBox.createSequentialGroup()
-					.addGap(27)
-					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(txtrEnjoyUnlimitedAdfree, GroupLayout.PREFERRED_SIZE, 205, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(txtrmonthly, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(subscribeBtn, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-					.addGap(42))
-		);
-		formBox.setLayout(gl_formBox);
-		
-		JPanel formBox_1 = new JPanel();
-		formBox_1.setBackground(new Color(217, 217, 217));
-		formBox_1.setBounds(573, 273, 427, 388);
-		container.add(formBox_1);
+		JLabel lblNewLabel_1 = new JLabel("PREMIUM");
+		lblNewLabel_1.setVerticalAlignment(SwingConstants.TOP);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 29));
 		
 		JTextArea txtrEnjoyUnlimitedAdfree_1 = new JTextArea();
 		txtrEnjoyUnlimitedAdfree_1.setEditable(false);
@@ -178,55 +144,60 @@ public class Subscription_Interface extends JFrame {
 		txtrEnjoyUnlimitedAdfree_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		txtrEnjoyUnlimitedAdfree_1.setBackground(new Color(217, 217, 217));
 		
-		JLabel lblNewLabel_1 = new JLabel("PREMIUM");
-		lblNewLabel_1.setVerticalAlignment(SwingConstants.TOP);
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 29));
-		
 		JTextArea txtrmonthly_1 = new JTextArea();
 		txtrmonthly_1.setText("₱499/monthly");
 		txtrmonthly_1.setFont(new Font("Tahoma", Font.BOLD, 19));
 		txtrmonthly_1.setBackground(new Color(217, 217, 217));
 		
-		JButton subscribeBtn1 = new JButton("SUBSCRIBE");
-		subscribeBtn1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Payment_Interface payInt2 = new Payment_Interface();
-				payInt2.setVisible(true);
-			}
-		});
-		subscribeBtn1.setForeground(Color.BLACK);
-		subscribeBtn1.setFont(new Font("Arial", Font.BOLD, 20));
-		subscribeBtn1.setBackground(new Color(211, 204, 227));
-		GroupLayout gl_formBox_1 = new GroupLayout(formBox_1);
-		gl_formBox_1.setHorizontalGroup(
-			gl_formBox_1.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_formBox_1.createSequentialGroup()
-					.addGap(33)
-					.addComponent(txtrEnjoyUnlimitedAdfree_1, GroupLayout.PREFERRED_SIZE, 358, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(36, Short.MAX_VALUE))
-				.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
-				.addGroup(Alignment.LEADING, gl_formBox_1.createSequentialGroup()
-					.addGap(131)
-					.addGroup(gl_formBox_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(subscribeBtn1, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtrmonthly_1, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(134, Short.MAX_VALUE))
+		GroupLayout gl_formBox = new GroupLayout(formBox);
+		gl_formBox.setHorizontalGroup(
+			gl_formBox.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_formBox.createSequentialGroup()
+					.addGroup(gl_formBox.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(gl_formBox.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addGroup(gl_formBox.createSequentialGroup()
+							.addGap(33)
+							.addComponent(txtrEnjoyUnlimitedAdfree, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addPreferredGap(ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+					.addGroup(gl_formBox.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 427, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_formBox.createSequentialGroup()
+							.addComponent(txtrEnjoyUnlimitedAdfree_1, GroupLayout.PREFERRED_SIZE, 358, GroupLayout.PREFERRED_SIZE)
+							.addGap(29)))
+					.addContainerGap())
+				.addGroup(gl_formBox.createSequentialGroup()
+					.addGap(140)
+					.addComponent(txtrmonthly, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 337, Short.MAX_VALUE)
+					.addComponent(txtrmonthly_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(151))
+				.addGroup(gl_formBox.createSequentialGroup()
+					.addGap(367)
+					.addComponent(subscribeBtn, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(387, Short.MAX_VALUE))
 		);
-		gl_formBox_1.setVerticalGroup(
-			gl_formBox_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_formBox_1.createSequentialGroup()
+		gl_formBox.setVerticalGroup(
+			gl_formBox.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_formBox.createSequentialGroup()
 					.addGap(27)
-					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
-					.addComponent(txtrEnjoyUnlimitedAdfree_1, GroupLayout.PREFERRED_SIZE, 205, GroupLayout.PREFERRED_SIZE)
-					.addGap(6)
-					.addComponent(txtrmonthly_1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_formBox.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(lblNewLabel_1))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_formBox.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtrEnjoyUnlimitedAdfree, GroupLayout.PREFERRED_SIZE, 205, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtrEnjoyUnlimitedAdfree_1, GroupLayout.PREFERRED_SIZE, 205, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_formBox.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtrmonthly, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtrmonthly_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
-					.addComponent(subscribeBtn1, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(24, Short.MAX_VALUE))
+					.addComponent(subscribeBtn, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+					.addGap(24))
 		);
-		formBox_1.setLayout(gl_formBox_1);
+		formBox.setLayout(gl_formBox);
 		
 		JLabel lblChooseYourPlan = new JLabel("CHOOSE YOUR PLAN");
 		lblChooseYourPlan.setForeground(new Color(255, 255, 255));
@@ -244,6 +215,7 @@ public class Subscription_Interface extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				cmInt.setVisible(true);
+				dispose();
 			}
 		});
 		returnBtn.setBounds(10, 41, 84, 52);

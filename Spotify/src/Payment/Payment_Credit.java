@@ -21,8 +21,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JComboBox;
 
-public class Payment_Credit149 extends JFrame {
+public class Payment_Credit extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel container;
@@ -30,12 +31,13 @@ public class Payment_Credit149 extends JFrame {
     private JTextField txtExpirationDate;
     private JTextField txtCvv;
     private JTextField txtNameOn;
+    pmAction pmAct = new pmAction();
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Payment_Credit149 frame = new Payment_Credit149();
+                    Payment_Credit frame = new Payment_Credit();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -44,7 +46,7 @@ public class Payment_Credit149 extends JFrame {
         });
     }
 
-    public Payment_Credit149() {
+    public Payment_Credit() {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1113, 801);
@@ -64,17 +66,6 @@ public class Payment_Credit149 extends JFrame {
         mainPanel.setBackground(new Color(35, 26, 66));
         container.add(mainPanel, BorderLayout.CENTER);
         mainPanel.setLayout(null);
-        
-        JLabel lblNewLabel_2_1 = new JLabel("Standard Plan");
-        lblNewLabel_2_1.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-        lblNewLabel_2_1.setBounds(210, 410, 230, 26);
-        mainPanel.add(lblNewLabel_2_1);
-        
-        JLabel lblNewLabel_3 = new JLabel("CHANGE");
-        lblNewLabel_3.setFont(new Font("Segoe UI", Font.BOLD, 15));
-        lblNewLabel_3.setForeground(new Color(0, 0, 128));
-        lblNewLabel_3.setBounds(817, 399, 82, 30);
-        mainPanel.add(lblNewLabel_3);
 
         JLabel lblChooseYourPlan = new JLabel("SET UP YOUR CREDIT OR DEBIT CARD");
         lblChooseYourPlan.setBounds(177, 115, 743, 35);
@@ -96,11 +87,6 @@ public class Payment_Credit149 extends JFrame {
   });
   btnNewButton.setBounds(177, 467, 743, 61);
   mainPanel.add(btnNewButton);
-                 
-                 JLabel lblNewLabel_2 = new JLabel("P149/month");
-                 lblNewLabel_2.setFont(new Font("Segoe UI", Font.BOLD, 19));
-                 lblNewLabel_2.setBounds(210, 387, 230, 30);
-                 mainPanel.add(lblNewLabel_2);
                  
                  txtExpirationDate = new JTextField();
                  txtExpirationDate.setText("Expiration Date");
@@ -187,20 +173,6 @@ public class Payment_Credit149 extends JFrame {
                  mainPanel.add(lblNewLabel_1_1_1_3);
                  ImageIcon cards = new ImageIcon(this.getClass().getResource("/Cards.png"));
                  lblNewLabel_1_1_1_3.setIcon(cards);
-                 
-                 
-                 
-                 JLabel lblNewLabel = new JLabel("");
-                 lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 15));
-                 
-                      // Set background color
-                      lblNewLabel.setBackground(new Color(217, 217, 217));
-                      
-                           // Ensure that the background color is visible
-                           lblNewLabel.setOpaque(true);
-                           
-                                lblNewLabel.setBounds(177, 367, 743, 90);
-                                mainPanel.add(lblNewLabel);
                                 
                                 JLabel lblNewLabel_4 = new JLabel("TUNEWAVELOGO");
                                 lblNewLabel_4.setBounds(30, 20, 162, 38);
@@ -220,6 +192,26 @@ public class Payment_Credit149 extends JFrame {
                         		txtS.setBounds(177, 172, 743, 55);
                         		mainPanel.add(txtS);
                         		txtS.setColumns(10);
+                        		
+                        		JComboBox<String> comboBox = new JComboBox<String>(pmAct.getSubscriptions());
+                        		comboBox.setFont(new Font("Tahoma", Font.BOLD, 24));
+                        		comboBox.addActionListener(new ActionListener() {
+                        			public void actionPerformed(ActionEvent e) {
+                        				JComboBox<String> combo = (JComboBox<String>) e.getSource();
+                        				String selectedSub = (String) combo.getSelectedItem();
+                        				
+                        				switch (selectedSub) {
+                        				case "149.99":
+                        					
+                        					break;
+                        				case "499.99":
+                        					
+                        					break;
+                        				}
+                        			}
+                        		});
+                        		comboBox.setBounds(177, 367, 743, 90);
+                        		mainPanel.add(comboBox);
 
                         		// Add listeners to txtS instead of txtCardNumber
                         		txtS.addMouseListener(new MouseAdapter() {

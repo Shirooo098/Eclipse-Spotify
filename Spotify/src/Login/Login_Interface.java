@@ -1,6 +1,7 @@
 package Login;
 
 import Register.*;
+import ContentManagement.*;
 import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.Insets;
@@ -20,6 +21,7 @@ import java.awt.Dimension;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
@@ -73,7 +75,7 @@ public class Login_Interface extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1113, 801);
 		container = new JPanel();
-		container.setBackground(new Color(14, 10, 26));
+		container.setBackground(new Color(35, 26, 66));
 		container.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
 		Toolkit toolkit = getToolkit();
@@ -125,10 +127,30 @@ public class Login_Interface extends JFrame {
 		logAct.passPlaceholder((JPasswordField) pWordField, "Password" , true);
 		
 		JButton loginBtn = new JButton("Login");
+		loginBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String username = uNameField.getText();
+				String password = String.valueOf(((JPasswordField) pWordField).getPassword());
+				
+				logAct.setUsername(username);
+				logAct.setPassword(password);
+				
+				if(logAct.login()) {
+					ContentManagement_Interface cmInt = new ContentManagement_Interface();
+                    cmInt.setVisible(true);
+                    dispose();
+                    
+				} else {
+					JOptionPane.showMessageDialog(null, "Invalid Username or Password");
+				}
+			}
+		});
+		
 		loginBtn.setBackground(new Color(255, 255, 255));
 		loginBtn.setForeground(new Color(0, 0, 0));
 		loginBtn.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		logAct.home(loginBtn);
+		
 		
 		
 		JLabel register = new JLabel("<HTML><U>Don't  Have an Account?</U></HTML>");

@@ -99,7 +99,7 @@ public class ContentManagement_Interface extends JFrame {
 					case "Subscription":
 						cmAct.selectedSub();
 						break;
-					case "Contact Us":
+					case "Account":
 						cmAct.selectedCS();
 						break;
 					case "Logout" :
