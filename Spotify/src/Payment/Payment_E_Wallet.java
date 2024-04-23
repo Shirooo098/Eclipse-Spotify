@@ -20,7 +20,6 @@ public class Payment_E_Wallet extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel container;
-    private JTextField textField;
     private JTextField textField_1;
     private JTextField textField_2;
 

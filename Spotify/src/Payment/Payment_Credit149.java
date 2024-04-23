@@ -8,6 +8,10 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,7 +21,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextArea;
 
 public class Payment_Credit149 extends JFrame {
 
@@ -26,7 +29,7 @@ public class Payment_Credit149 extends JFrame {
     private JTextField txtS;
     private JTextField txtExpirationDate;
     private JTextField txtCvv;
-    private JTextField textField_2;
+    private JTextField txtNameOn;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -100,28 +103,84 @@ public class Payment_Credit149 extends JFrame {
                  mainPanel.add(lblNewLabel_2);
                  
                  txtExpirationDate = new JTextField();
+                 txtExpirationDate.setText("Expiration Date");
                  txtExpirationDate.setBackground(new Color(217, 217, 217));
                  txtExpirationDate.setForeground(new Color(0, 0, 0));
                  txtExpirationDate.setFont(new Font("Segoe UI", Font.PLAIN, 19));
                  txtExpirationDate.setColumns(10);
                  txtExpirationDate.setBounds(177, 237, 373, 55);
                  mainPanel.add(txtExpirationDate);
+                 txtExpirationDate.addMouseListener(new MouseAdapter() {
+                	    @Override
+                	    public void mouseClicked(MouseEvent e) {
+                	        if (txtExpirationDate.getText().equals("Expiration Date")) {
+                	            txtExpirationDate.setText("");
+                	        }
+                	    }
+                	});
+
+                	txtExpirationDate.addFocusListener(new FocusAdapter() {
+                	    @Override
+                	    public void focusLost(FocusEvent e) {
+                	        if (txtExpirationDate.getText().isEmpty()) {
+                	            txtExpirationDate.setText("Expiration Date");
+                	        }
+                	    }
+                	});
+
                  
                  txtCvv = new JTextField();
+                 txtCvv.setText("CVV");
                  txtCvv.setBackground(new Color(217, 217, 217));
-                 txtCvv.setForeground(Color.LIGHT_GRAY);
+                 txtCvv.setForeground(new Color(0, 0, 0));
                  txtCvv.setFont(new Font("Segoe UI", Font.PLAIN, 19));
                  txtCvv.setColumns(10);
                  txtCvv.setBounds(560, 237, 360, 55);
                  mainPanel.add(txtCvv);
+                 txtCvv.addMouseListener(new MouseAdapter() {
+                	    @Override
+                	    public void mouseClicked(MouseEvent e) {
+                	        if (txtCvv.getText().equals("CVV")) {
+                	            txtCvv.setText("");
+                	        }
+                	    }
+                	});
+
+                	txtCvv.addFocusListener(new FocusAdapter() {
+                	    @Override
+                	    public void focusLost(FocusEvent e) {
+                	        if (txtCvv.getText().isEmpty()) {
+                	            txtCvv.setText("CVV");
+                	        }
+                	    }
+                	});
                  
-                 textField_2 = new JTextField();
-                 textField_2.setBackground(new Color(217, 217, 217));
-                 textField_2.setForeground(new Color(0, 0, 0));
-                 textField_2.setFont(new Font("Segoe UI", Font.PLAIN, 19));
-                 textField_2.setColumns(10);
-                 textField_2.setBounds(177, 302, 743, 55);
-                 mainPanel.add(textField_2);
+                 
+                 txtNameOn = new JTextField();
+                 txtNameOn.setText("Name on Card");
+                 txtNameOn.setBackground(new Color(217, 217, 217));
+                 txtNameOn.setForeground(new Color(0, 0, 0));
+                 txtNameOn.setFont(new Font("Segoe UI", Font.PLAIN, 19));
+                 txtNameOn.setColumns(10);
+                 txtNameOn.setBounds(177, 302, 743, 55);
+                 mainPanel.add(txtNameOn);
+                 txtNameOn.addMouseListener(new MouseAdapter() {
+                	    @Override
+                	    public void mouseClicked(MouseEvent e) {
+                	        if (txtNameOn.getText().equals("Name on Card")) {
+                	            txtNameOn.setText("");
+                	        }
+                	    }
+                	});
+
+                	txtNameOn.addFocusListener(new FocusAdapter() {
+                	    @Override
+                	    public void focusLost(FocusEvent e) {
+                	        if (txtNameOn.getText().isEmpty()) {
+                	            txtNameOn.setText("Name on Card");
+                	        }
+                	    }
+                	});
                  
                  JLabel lblNewLabel_1_1_1_3 = new JLabel("cards");
                  lblNewLabel_1_1_1_3.setBounds(177, 548, 743, 55);
@@ -152,14 +211,35 @@ public class Payment_Credit149 extends JFrame {
                         		        
                         		
                         		        // Other components
-                        		        txtS = new JTextField();
-                        		        txtS.setToolTipText("");
-                        		        txtS.setBackground(new Color(217, 217, 217));
-                        		        txtS.setForeground(new Color(0, 0, 0));
-                        		        txtS.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-                        		        txtS.setBounds(177, 172, 743, 55);
-                        		        mainPanel.add(txtS);
-                        		        txtS.setColumns(10);
+                        		txtS = new JTextField(); 
+                        		txtS.setText("Card Number");
+                        		txtS.setToolTipText("");
+                        		txtS.setBackground(new Color(217, 217, 217));
+                        		txtS.setForeground(new Color(0, 0, 0));
+                        		txtS.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+                        		txtS.setBounds(177, 172, 743, 55);
+                        		mainPanel.add(txtS);
+                        		txtS.setColumns(10);
+
+                        		// Add listeners to txtS instead of txtCardNumber
+                        		txtS.addMouseListener(new MouseAdapter() {
+                        		    @Override
+                        		    public void mouseClicked(MouseEvent e) {
+                        		        if (txtS.getText().equals("Card Number")) {
+                        		            txtS.setText("");
+                        		        }
+                        		    }
+                        		});
+
+                        		txtS.addFocusListener(new FocusAdapter() {
+                        		    @Override
+                        		    public void focusLost(FocusEvent e) {
+                        		        if (txtS.getText().isEmpty()) {
+                        		            txtS.setText("Card Number");
+                        		        }
+                        		    }
+                        		});
+
 
     }
 }
