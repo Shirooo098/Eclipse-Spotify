@@ -25,7 +25,7 @@ import javax.swing.border.EmptyBorder;
 
 import Payment.Payment_Interface;
 
-public class contentAcquisition extends JFrame {
+public class Choosuser extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel container;
@@ -37,7 +37,7 @@ public class contentAcquisition extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					contentAcquisition frame = new contentAcquisition();
+					Choosuser frame = new Choosuser();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +49,7 @@ public class contentAcquisition extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public contentAcquisition() {
+	public Choosuser() {
 		
 		setResizable(false);
 		
