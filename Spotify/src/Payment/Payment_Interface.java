@@ -1,13 +1,11 @@
 package Payment;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,9 +20,6 @@ public class Payment_Interface extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel container;
 
-    /**
-     * Launch the application.
-     */
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -38,82 +33,54 @@ public class Payment_Interface extends JFrame {
         });
     }
 
-    /**
-     * Create the frame.
-     */
     public Payment_Interface() {
-
         setResizable(false);
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1113, 801);
         container = new JPanel();
         container.setBackground(new Color(14, 10, 26));
         container.setBorder(new EmptyBorder(5, 5, 5, 5));
-
         Toolkit toolkit = getToolkit();
         Dimension size = toolkit.getScreenSize();
         setLocation(size.width / 2 - getWidth() / 2, size.height / 2 - getHeight() / 2);
 
         setContentPane(container);
-        ImageIcon img = new ImageIcon(this.getClass().getResource("/Logo.png"));
-        container.setLayout(null);
+        container.setLayout(new BorderLayout());
 
-        // LOGO LOGO LOGO
-        // LOGO LOGO LOGO
-        // LOGO LOGO LOGO
+        // Main content
+        JPanel mainPanel = new JPanel();
+        mainPanel.setBackground(new Color(35, 26, 66));
+        container.add(mainPanel, BorderLayout.CENTER);
+        mainPanel.setLayout(null);
 
-        JLabel logo = new JLabel("");
-        logo.setFont(new Font("Tahoma", Font.PLAIN, 5));
-        logo.setBounds(272, 38, 522, 140);
-        container.add(logo);
-        logo.setIcon(img);
+        JLabel lblNewLabel = new JLabel("Logo");
+        lblNewLabel.setBounds(288, 92, 514, 103);
+        mainPanel.add(lblNewLabel);
+        ImageIcon logo = new ImageIcon(this.getClass().getResource("/Logo.png"));
+        lblNewLabel.setIcon(logo);
 
-        JLabel lblChooseYourPlan = new JLabel("CHOOSE PAYMENT METHOD");
-        lblChooseYourPlan.setForeground(new Color(255, 255, 255));
-        lblChooseYourPlan.setVerticalAlignment(SwingConstants.TOP);
-        lblChooseYourPlan.setHorizontalAlignment(SwingConstants.CENTER);
-        lblChooseYourPlan.setFont(new Font("Tahoma", Font.BOLD, 29));
-        lblChooseYourPlan.setBounds(321, 189, 425, 35);
-        container.add(lblChooseYourPlan);
 
-        Font buttonFont = new Font("Tahoma", Font.BOLD, 29);
+        JButton btnGcash = new JButton("GCASH");
+        btnGcash.setBackground(new Color(217, 217, 217));
+        btnGcash.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        btnGcash.setBounds(214, 448, 663, 97);
+        mainPanel.add(btnGcash);
 
-        ImageIcon image1 = new ImageIcon(new ImageIcon(this.getClass().getResource("/credit.png")).getImage().getScaledInstance(60, -1, Image.SCALE_DEFAULT));
-        ImageIcon image2 = new ImageIcon(new ImageIcon(this.getClass().getResource("/digiwallet.png")).getImage().getScaledInstance(60, -1, Image.SCALE_DEFAULT));
-        ImageIcon image3 = new ImageIcon(new ImageIcon(this.getClass().getResource("/voucher.png")).getImage().getScaledInstance(60, -1, Image.SCALE_DEFAULT));
+        JButton btnNewButton = new JButton("CREDIT OR DEBIT CARD");
+        btnNewButton.setBackground(new Color(217, 217, 217));
+        btnNewButton.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        btnNewButton.setBounds(214, 312, 663, 97);
+        mainPanel.add(btnNewButton);
 
-        JButton btnNewButton = new JButton(image1);
-        btnNewButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
-        JButton btnNewButton_1 = new JButton(image2);
-        JButton btnNewButton_1_1 = new JButton(image3);
-        btnNewButton_1_1.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
 
-        // Set text for each button
-        btnNewButton.setText("CREDIT OR DEBIT CARD");
-        btnNewButton_1.setText("DIGITAL WALLET");
+        JLabel lblNewLabel_1 = new JLabel("CHOOSE YOUR MODE OF PAYMENT");
+        lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+        lblNewLabel_1.setForeground(new Color(255, 255, 255));
+        lblNewLabel_1.setFont(new Font("Segoe UI", Font.BOLD, 24));
+        lblNewLabel_1.setBounds(314, 245, 453, 26);
+        mainPanel.add(lblNewLabel_1);
 
-        // Set button bounds
-        btnNewButton.setBounds(217, 255, 631, 93);
-        btnNewButton_1.setBounds(217, 395, 631, 93);
 
-        // Set font for buttons
-        btnNewButton.setFont(buttonFont);
-        btnNewButton_1.setFont(buttonFont);
 
-        // Set horizontal alignment of text and image
-        btnNewButton.setHorizontalTextPosition(SwingConstants.RIGHT);
-        btnNewButton.setHorizontalAlignment(SwingConstants.CENTER);
-        btnNewButton_1.setHorizontalTextPosition(SwingConstants.RIGHT);
-        btnNewButton_1.setHorizontalAlignment(SwingConstants.CENTER);
-        //container
-        container.add(btnNewButton);
-        container.add(btnNewButton_1);
     }
 }
