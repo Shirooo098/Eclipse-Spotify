@@ -75,12 +75,19 @@ public class Payment_Interface extends JFrame {
                 dispose();
             }
         });
-        JButton btnNewButton = new JButton("CREDIT OR DEBIT CARD");
-        btnNewButton.setBackground(new Color(217, 217, 217));
-        btnNewButton.setFont(new Font("Segoe UI", Font.BOLD, 20));
-        btnNewButton.setBounds(214, 312, 663, 97);
-        mainPanel.add(btnNewButton);
+        JButton btnCard = new JButton("CREDIT OR DEBIT CARD");
+        btnCard.setBackground(new Color(217, 217, 217));
+        btnCard.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        btnCard.setBounds(214, 312, 663, 97);
+        mainPanel.add(btnCard);
 
+        btnCard.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		Payment_Credit cCard = new Payment_Credit();
+        		cCard.setVisible(true);
+        		dispose();
+        	}
+        });
 
         JLabel lblNewLabel_1 = new JLabel("CHOOSE YOUR MODE OF PAYMENT");
         lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);

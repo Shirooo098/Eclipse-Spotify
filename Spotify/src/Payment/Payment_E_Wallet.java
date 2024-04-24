@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JComboBox;
 
 public class Payment_E_Wallet extends JFrame {
 
@@ -23,6 +26,8 @@ public class Payment_E_Wallet extends JFrame {
     private JTextField textField;
     private JTextField textField_1;
     private JTextField textField_2;
+    pmAction pmAct = new pmAction();
+
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -109,7 +114,7 @@ public class Payment_E_Wallet extends JFrame {
         textField_2.setBounds(35, 196, 536, 45);
         panel.add(textField_2);
         
-        JLabel lblEnterOtp = new JLabel("Enter OTP:");
+        JLabel lblEnterOtp = new JLabel("Enter Amount:");
         lblEnterOtp.setForeground(Color.BLACK);
         lblEnterOtp.setFont(new Font("Segoe UI", Font.BOLD, 15));
         lblEnterOtp.setBounds(25, 160, 207, 26);
@@ -127,28 +132,33 @@ public class Payment_E_Wallet extends JFrame {
         lblOrderConfirmation.setBounds(25, 24, 207, 26);
         panel_1.add(lblOrderConfirmation);
         
-        JLabel lblNewLabel_1_1 = new JLabel("P149/monthly");
-        lblNewLabel_1_1.setForeground(Color.BLACK);
-        lblNewLabel_1_1.setFont(new Font("Segoe UI", Font.BOLD, 19));
-        lblNewLabel_1_1.setBounds(59, 73, 207, 26);
-        panel_1.add(lblNewLabel_1_1);
-        
-        JLabel lblNewLabel_1_1_1 = new JLabel("Standard");
-        lblNewLabel_1_1_1.setForeground(Color.BLACK);
-        lblNewLabel_1_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 19));
-        lblNewLabel_1_1_1.setBounds(59, 98, 207, 26);
-        panel_1.add(lblNewLabel_1_1_1);
-        
         JPanel panel_1_1 = new JPanel();
         panel_1_1.setLayout(null);
-        panel_1_1.setBounds(25, 60, 547, 79);
+        panel_1_1.setBounds(35, 60, 537, 79);
         panel_1.add(panel_1_1);
         
-        JLabel lblNewLabel_1_1_1_1 = new JLabel("CHANGE");
-        lblNewLabel_1_1_1_1.setForeground(new Color(0, 64, 128));
-        lblNewLabel_1_1_1_1.setFont(new Font("Segoe UI", Font.BOLD, 17));
-        lblNewLabel_1_1_1_1.setBounds(449, 20, 70, 32);
-        panel_1_1.add(lblNewLabel_1_1_1_1);
+        JComboBox<String> comboBox = new JComboBox<String>(pmAct.getSubscriptions());
+		comboBox.setFont(new Font("Tahoma", Font.BOLD, 24));
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JComboBox<String> combo = (JComboBox<String>) e.getSource();
+				String selectedSub = (String) combo.getSelectedItem();
+				
+				switch (selectedSub) {
+				case "149.99":
+					
+					break;
+				case "499.99":
+					
+					break;
+				}
+			}
+		});
+		
+        comboBox.setBounds(0, 0, 537, 79);
+        
+        
+        panel_1_1.add(comboBox);
         
         JLabel lblNewLabel_1 = new JLabel("SMALLLOGO");
         lblNewLabel_1.setBounds(30, 20, 162, 38);

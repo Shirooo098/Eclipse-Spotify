@@ -47,6 +47,7 @@ public class Subscription_Interface extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel container;
+
 	ContentManagement_Interface cmInt = new ContentManagement_Interface();
 	/**
 	 * Launch the application.

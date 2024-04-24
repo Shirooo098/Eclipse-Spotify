@@ -42,7 +42,6 @@ public class Register_Interface extends JFrame {
 	private JTextField confirmPw;
 	private JTextField pWordField;
 	RegisterAction regAct = new RegisterAction();
-	ContentManagement_Interface conInt = new ContentManagement_Interface();
 
 	/**
 	 * Launch the application.
@@ -160,8 +159,8 @@ public class Register_Interface extends JFrame {
 					regAct.setPassword(password);
 					regAct.register();
 					JOptionPane.showMessageDialog(null, "Registered Succesfully!");
-					ContentManagement_Interface conInt = new ContentManagement_Interface();
-					conInt.setVisible(true);
+					Login_Interface logInt = new Login_Interface();
+					logInt.setVisible(true);
 					dispose();
 					
 				}

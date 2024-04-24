@@ -45,47 +45,6 @@ public class loginAction  {
 		return this.password = password;
 	}
 
-	static final String DB_URL = "jdbc:mysql://localhost:3306/spotify";
-	static final String USER = "root";
-	static final String PASS = "AandromedaNnebula11";
-	
-	RegisterAction regAct = new RegisterAction();
-	
-	public boolean login() {
-		Connection conn = null;
-		PreparedStatement pst = null;
-		ResultSet rs = null;
-		boolean loggedIn = false;
-		
-		try {
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-		
-			String sql = "SELECT * FROM user WHERE username = ? AND password = ?";
-			
-			
-			pst = conn.prepareStatement(sql);
-			pst.setString(1, username);
-			pst.setString(2, password);
-			
-			rs = pst.executeQuery();
-			
-			loggedIn = rs.next();
-			
-;		}catch(SQLException exc) {
-			exc.printStackTrace();
-		} finally {
-			try {
-				if(rs != null) rs.close();
-				if(pst != null) pst.close();
-				if(conn != null) conn.close();
-			} catch(SQLException exc1) { 
-				exc1.printStackTrace();
-			}
-		}
-		
-		return loggedIn;
-	}
-	
 
 	public void textPlaceholder(final JTextField tField, String placeholder, boolean clickFocus) {
 		tField.setText(placeholder);
@@ -148,17 +107,6 @@ public class loginAction  {
 			});
 		}
 	}
-	
-	public void home(JButton btn) {
-		btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ContentManagement_Interface conInt = new ContentManagement_Interface();
-				conInt.setVisible(true);
-			}
-		});
-			
 		
-	}
-	
 	
 }	

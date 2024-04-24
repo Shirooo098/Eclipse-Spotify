@@ -42,6 +42,10 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -52,6 +56,9 @@ public class Login_Interface extends JFrame {
 	private JTextField uNameField;
 	private JTextField pWordField;
 	loginAction logAct = new loginAction();
+	static final String DB_URL = "jdbc:mysql://localhost:3306/spotify";
+	static final String USER = "root";
+	static final String PASS = "AandromedaNnebula11";
 	/**
 	 * Launch the application.
 	 */
@@ -136,13 +143,23 @@ public class Login_Interface extends JFrame {
 				logAct.setUsername(username);
 				logAct.setPassword(password);
 				
-				if(logAct.login()) {
-					ContentManagement_Interface cmInt = new ContentManagement_Interface();
-                    cmInt.setVisible(true);
-                    dispose();
-                    
-				} else {
-					JOptionPane.showMessageDialog(null, "Invalid Username or Password");
+				try {
+					Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+					Statement stmt= conn.createStatement();
+					String sql = "SELECT * FROM user WHERE username = '"+username+"'"
+							+ " AND password = '"+password+"'";
+					
+					ResultSet rs = stmt.executeQuery(sql);
+					
+					if(rs.next()) {
+						String uname = rs.getNString("username");
+						dispose();
+						ContentManagement_Interface conInt = new ContentManagement_Interface();
+						conInt.setVisible(true);
+						
+					}
+				} catch(Exception exc) {
+					exc.printStackTrace();
 				}
 			}
 		});

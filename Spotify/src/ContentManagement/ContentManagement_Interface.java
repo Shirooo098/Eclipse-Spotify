@@ -33,7 +33,7 @@ public class ContentManagement_Interface extends JFrame {
 	private JPanel panel_1;
 	Timer tm;
 	Integer pl = 60;
-	/**
+		/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
@@ -53,7 +53,6 @@ public class ContentManagement_Interface extends JFrame {
 	 * Create the frame.
 	 */
 	public ContentManagement_Interface() {
-		
 		final cmAction cmAct = new cmAction();
 		setResizable(false);
 		
@@ -98,12 +97,22 @@ public class ContentManagement_Interface extends JFrame {
 						break;
 					case "Subscription":
 						cmAct.selectedSub();
+						
+						dispose();
+						break;
+					case "Contact Us":
+						cmAct.selectedCS();
+						
+						dispose();
 						break;
 					case "Account":
-						cmAct.selectedCS();
+						cmAct.selectedAcc();
+						
+						dispose();
+
 						break;
 					case "Logout" :
-						
+						dispose();
 						break;
 				}
 			}
@@ -111,65 +120,7 @@ public class ContentManagement_Interface extends JFrame {
 		
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		comboBox.setBounds(908, 15, 128, 34);
-		navbar.add(comboBox);
-		
-//		final JPanel dropdownBtn = new JPanel();
-//		dropdownBtn.setBounds(962, 15, 111, 50);
-//		navbar.add(dropdownBtn);
-//		container.setComponentZOrder(dropdownBtn, 0);
-//		dropdownBtn.setLayout(null);
-//		
-//		JButton subBtn = new JButton("Subscription");
-//		subBtn.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				
-//			}
-//		});
-//		subBtn.setBounds(0, 47, 111, 50);
-//		dropdownBtn.add(subBtn);
-//		
-//		JButton csBtn = new JButton("Contact Us");
-//		csBtn.setBounds(0, 96, 111, 50);
-//		dropdownBtn.add(csBtn);
-//		
-//		JButton logoutBtn = new JButton("Logout");
-//		logoutBtn.setBounds(0, 143, 111, 50);
-//		dropdownBtn.add(logoutBtn);
-//		
-//		final JButton homeBtn = new JButton("Home");
-//		
-//		tm = new Timer(10, new ActionListener(){
-//			public void actionPerformed(ActionEvent e) {
-//				// stops if the height is 199.9
-//				if(pl > 199.9) {
-//					tm.stop();
-//				}else {
-//				// Increments the height until 199.9
-//					dropdownBtn.setSize(dropdownBtn.getWidth(), pl);
-//					pl += 10;
-//				}
-//				
-//			}
-//		});
-//		homeBtn.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseEntered(MouseEvent e) {
-//				tm.start();
-//			}
-//			@Override
-//		    public void mouseExited(MouseEvent e) {
-//		        // Check if the mouse exited the homeBtn and not entered the dropdown panel
-//		        if (e.getX() < 0 || e.getY() < 0 || e.getX() >= dropdownBtn.getWidth() || e.getY() >= dropdownBtn.getHeight()) {
-//		            tm.stop();
-//		            dropdownBtn.setSize(dropdownBtn.getWidth(), 50);
-//		            pl = 50; 
-//		        }
-//		    }
-//		});
-//		homeBtn.setBounds(0, 0, 111, 53);
-//		dropdownBtn.add(homeBtn);
-		
-		
+		navbar.add(comboBox);	
 		
 		panel = new JPanel();
 		panel.setBackground(new Color(25, 25, 24));
