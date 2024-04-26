@@ -110,13 +110,17 @@ public class Payment_E_Wallet extends JFrame {
 
         btnSubmit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (!chckbxNewCheckBox.isSelected()) {
-                    JOptionPane.showMessageDialog(container, "Please confirm your Phone Number", "Error", JOptionPane.ERROR_MESSAGE);
+                // Check if the text field is empty
+                if (textField_1.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(container, "Please enter your mobile number", "Error", JOptionPane.ERROR_MESSAGE);
+                } else if (!chckbxNewCheckBox.isSelected()) {
+                    JOptionPane.showMessageDialog(container, "Please confirm your agreement", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(container, "Payment Confirmed!\n\n" + "Order: " + "Payment Method:\n " + "Subscription Start:\n " + "Subscription End:\n ");
                 }
             }
         });
+
 
         JPanel panel_1 = new JPanel();
         panel_1.setBackground(new Color(7, 125, 250));
