@@ -5,6 +5,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.sql.*;
 
 public class Payment_E_Wallet extends JFrame {
 
@@ -108,20 +111,6 @@ public class Payment_E_Wallet extends JFrame {
         chckbxNewCheckBox.setBounds(35, 123, 305, 21);
         panel.add(chckbxNewCheckBox);
 
-        btnSubmit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Check if the text field is empty
-                if (textField_1.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(container, "Please enter your mobile number", "Error", JOptionPane.ERROR_MESSAGE);
-                } else if (!chckbxNewCheckBox.isSelected()) {
-                    JOptionPane.showMessageDialog(container, "Please confirm your agreement", "Error", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(container, "Payment Confirmed!\n\n" + "Order: " + "Payment Method:\n " + "Subscription Start:\n " + "Subscription End:\n ");
-                }
-            }
-        });
-
-
         JPanel panel_1 = new JPanel();
         panel_1.setBackground(new Color(7, 125, 250));
         panel_1.setLayout(null);
@@ -139,7 +128,7 @@ public class Payment_E_Wallet extends JFrame {
         panel_1_1.setBounds(35, 60, 537, 79);
         panel_1.add(panel_1_1);
 
-        JComboBox<String> comboBox = new JComboBox<String>(pmAct.getSubscriptions());
+        final JComboBox<String> comboBox = new JComboBox<String>(pmAct.getSubscriptions());
         comboBox.setFont(new Font("Tahoma", Font.BOLD, 24));
         comboBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -148,10 +137,24 @@ public class Payment_E_Wallet extends JFrame {
 
                 switch (selectedSub) {
                     case "149.00":
-
+                        LocalDate currentDate = LocalDate.now();
+                        LocalDate subscriptionEndDate = currentDate.plusDays(60);
+                        String messageStandard = "Payment Confirmed!\n\n" +
+                                "Subscription Type: Standard Plan\n" +
+                                "Subscription Start: " + currentDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")) + "\n" +
+                                "Subscription End: " + subscriptionEndDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")) + "\n" +
+                                "Payment Method: GCASH";
+                        JOptionPane.showMessageDialog(container, messageStandard);
                         break;
                     case "499.00":
-
+                        LocalDate currentDatePremium = LocalDate.now();
+                        LocalDate subscriptionEndDatePremium = currentDatePremium.plusDays(92);
+                        String messagePremium = "Payment Confirmed!\n\n" +
+                                "Subscription Type: Premium Plan\n" +
+                                "Subscription Start: " + currentDatePremium.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")) + "\n" +
+                                "Subscription End: " + subscriptionEndDatePremium.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")) + "\n" +
+                                "Payment Method: Premium Payment";
+                        JOptionPane.showMessageDialog(container, messagePremium);
                         break;
                 }
             }
@@ -171,5 +174,40 @@ public class Payment_E_Wallet extends JFrame {
         lblNewLabel_2.setForeground(new Color(255, 255, 255));
         lblNewLabel_2.setBounds(30, 703, 87, 24);
         mainPanel.add(lblNewLabel_2);
+
+        btnSubmit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Check if the text field is empty
+                if (textField_1.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(container, "Please enter your mobile number & registered your email.", "Error", JOptionPane.ERROR_MESSAGE);
+                } else if (!chckbxNewCheckBox.isSelected()) {
+                    JOptionPane.showMessageDialog(container, "Please confirm your agreement", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    String subscriptionType = comboBox.getSelectedItem().toString();
+                            
+                    int subscriptionDuration = 0;
+                    LocalDate startDate = LocalDate.now();
+                    LocalDate endDate = startDate;
+                    
+                    if (subscriptionType.equals("Standard Plan")) {
+                        subscriptionDuration = 60; 
+                        endDate = startDate.plusDays(subscriptionDuration);
+                    } 
+                    else if (subscriptionType.equals("Premium Plan")) {
+                        subscriptionDuration = 92; 
+                        endDate = startDate.plusDays(subscriptionDuration);
+                    }
+
+                    String message = "Payment Confirmed!\n\n" +
+                            "Order: " + subscriptionType + "\nPayment Method: GCASH\n" +
+                            "Subscription Start: " + startDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")) + "\n" +
+                            "Subscription End: " + endDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+                    JOptionPane.showMessageDialog(container, message);
+                }
+            }
+        });
+
+
+
     }
 }
