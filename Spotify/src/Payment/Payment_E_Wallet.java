@@ -181,7 +181,7 @@ public class Payment_E_Wallet extends JFrame {
                 if (textField_1.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(container, "Please enter your mobile number.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else if (!chckbxNewCheckBox.isSelected()) {
-                    JOptionPane.showMessageDialog(container, "Please confirm your phone number", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(container, "Please confirm your phone number.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
                     String subscriptionType = comboBox.getSelectedItem().toString();
                             
