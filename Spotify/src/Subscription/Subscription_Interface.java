@@ -105,11 +105,13 @@ public class Subscription_Interface extends JFrame {
 		formBox.setBackground(new Color(217, 217, 217));
 		
 		JLabel lblNewLabel = new JLabel("STANDARD");
+		lblNewLabel.setBounds(10, 27, 409, 35);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 29));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
 		
 		JButton subscribeBtn = new JButton("SUBSCRIBE");
+		subscribeBtn.setBounds(370, 328, 162, 36);
 		subscribeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Payment_Interface payInt = new Payment_Interface();
@@ -122,83 +124,46 @@ public class Subscription_Interface extends JFrame {
 		subscribeBtn.setFont(new Font("Arial", Font.BOLD, 20));
 		
 		JTextArea txtrEnjoyUnlimitedAdfree = new JTextArea();
+		txtrEnjoyUnlimitedAdfree.setBounds(33, 72, 386, 205);
 		txtrEnjoyUnlimitedAdfree.setEditable(false);
 		txtrEnjoyUnlimitedAdfree.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		txtrEnjoyUnlimitedAdfree.setBackground(new Color(217, 217, 217));
 		txtrEnjoyUnlimitedAdfree.setRows(2);
-		txtrEnjoyUnlimitedAdfree.setText("• Enjoy Unlimited Ad-Free Music with \r\n   No Interruptions\r\n\r\r\n• Listen on 2 supported devices at a time\r\n\r\n• Listen to all musics available on TuneWave\r\n\r\n• Option to add 1 extra member who doesn't \r\n   live with you.");
+		txtrEnjoyUnlimitedAdfree.setText("• Enjoy 1-month  of Unlimited Ad-Free Music with \r\n   No Interruptions\r\n\r\r\n• Listen on 2 supported devices at a time\r\n\r\n• Listen to all musics available on TuneWave\r\n\r\n• Option to add 2 unsupported device\r\n   live with you.");
 		
 		JTextArea txtrmonthly = new JTextArea();
+		txtrmonthly.setBounds(140, 283, 144, 27);
 		txtrmonthly.setFont(new Font("Tahoma", Font.BOLD, 19));
 		txtrmonthly.setBackground(new Color(217, 217, 217));
 		txtrmonthly.setText("₱149/monthly");
 		
 		JLabel lblNewLabel_1 = new JLabel("PREMIUM");
+		lblNewLabel_1.setBounds(479, 27, 427, 35);
 		lblNewLabel_1.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 29));
 		
 		JTextArea txtrEnjoyUnlimitedAdfree_1 = new JTextArea();
+		txtrEnjoyUnlimitedAdfree_1.setBounds(519, 72, 358, 205);
 		txtrEnjoyUnlimitedAdfree_1.setEditable(false);
-		txtrEnjoyUnlimitedAdfree_1.setText("• Enjoy Unlimited Ad-Free Music with \r\n   No Interruptions\r\n\r\r\n• Listen on 4 supported devices at a time\r\n\r\n• Listen to all musics available on TuneWave\r\n\r\n• Option to add 2 extra member who doesn't \r\n   live with you.");
+		txtrEnjoyUnlimitedAdfree_1.setText("• Enjoy 1-year of Unlimited Ad-Free Music with \r\n   No Interruptions\r\n\r\r\n• Listen on 4 supported devices at a time\r\n\r\n• Listen to all musics available on TuneWave\r\n\r\n• Option to add 2 unsupported device");
 		txtrEnjoyUnlimitedAdfree_1.setRows(2);
 		txtrEnjoyUnlimitedAdfree_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		txtrEnjoyUnlimitedAdfree_1.setBackground(new Color(217, 217, 217));
 		
 		JTextArea txtrmonthly_1 = new JTextArea();
-		txtrmonthly_1.setText("₱499/monthly");
+		txtrmonthly_1.setBounds(619, 283, 146, 27);
+		txtrmonthly_1.setText("₱499/annually");
 		txtrmonthly_1.setFont(new Font("Tahoma", Font.BOLD, 19));
 		txtrmonthly_1.setBackground(new Color(217, 217, 217));
-		
-		GroupLayout gl_formBox = new GroupLayout(formBox);
-		gl_formBox.setHorizontalGroup(
-			gl_formBox.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_formBox.createSequentialGroup()
-					.addGroup(gl_formBox.createParallelGroup(Alignment.LEADING, false)
-						.addGroup(gl_formBox.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-						.addGroup(gl_formBox.createSequentialGroup()
-							.addGap(33)
-							.addComponent(txtrEnjoyUnlimitedAdfree, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addPreferredGap(ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
-					.addGroup(gl_formBox.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 427, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_formBox.createSequentialGroup()
-							.addComponent(txtrEnjoyUnlimitedAdfree_1, GroupLayout.PREFERRED_SIZE, 358, GroupLayout.PREFERRED_SIZE)
-							.addGap(29)))
-					.addContainerGap())
-				.addGroup(gl_formBox.createSequentialGroup()
-					.addGap(140)
-					.addComponent(txtrmonthly, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 337, Short.MAX_VALUE)
-					.addComponent(txtrmonthly_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(151))
-				.addGroup(gl_formBox.createSequentialGroup()
-					.addGap(367)
-					.addComponent(subscribeBtn, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(387, Short.MAX_VALUE))
-		);
-		gl_formBox.setVerticalGroup(
-			gl_formBox.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_formBox.createSequentialGroup()
-					.addGap(27)
-					.addGroup(gl_formBox.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(lblNewLabel_1))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_formBox.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtrEnjoyUnlimitedAdfree, GroupLayout.PREFERRED_SIZE, 205, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtrEnjoyUnlimitedAdfree_1, GroupLayout.PREFERRED_SIZE, 205, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_formBox.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtrmonthly, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtrmonthly_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addComponent(subscribeBtn, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-					.addGap(24))
-		);
-		formBox.setLayout(gl_formBox);
+		formBox.setLayout(null);
+		formBox.add(lblNewLabel);
+		formBox.add(txtrEnjoyUnlimitedAdfree);
+		formBox.add(lblNewLabel_1);
+		formBox.add(txtrEnjoyUnlimitedAdfree_1);
+		formBox.add(txtrmonthly);
+		formBox.add(txtrmonthly_1);
+		formBox.add(subscribeBtn);
 		
 		JLabel lblChooseYourPlan = new JLabel("CHOOSE YOUR PLAN");
 		lblChooseYourPlan.setForeground(new Color(255, 255, 255));

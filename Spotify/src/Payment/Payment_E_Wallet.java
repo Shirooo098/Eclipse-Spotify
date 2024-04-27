@@ -13,7 +13,6 @@ public class Payment_E_Wallet extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel container;
-    private JTextField textField;
     private JTextField textField_1;
     pmAction pmAct = new pmAction();
 
@@ -127,9 +126,11 @@ public class Payment_E_Wallet extends JFrame {
         panel_1_1.setLayout(null);
         panel_1_1.setBounds(35, 60, 537, 79);
         panel_1.add(panel_1_1);
-
-        final JComboBox<String> comboBox = new JComboBox<String>(pmAct.getSubscriptions());
-        comboBox.setFont(new Font("Tahoma", Font.BOLD, 24));
+        
+                final JComboBox<String> comboBox = new JComboBox<String>(pmAct.getSubscriptions());
+                comboBox.setBounds(0, 0, 537, 79);
+                panel_1_1.add(comboBox);
+                comboBox.setFont(new Font("Tahoma", Font.BOLD, 24));
         comboBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JComboBox<String> combo = (JComboBox<String>) e.getSource();
@@ -160,9 +161,6 @@ public class Payment_E_Wallet extends JFrame {
             }
         });
 
-        comboBox.setBounds(0, 0, 537, 79);
-        panel_1_1.add(comboBox);
-
         JLabel lblNewLabel_1 = new JLabel("SMALLLOGO");
         lblNewLabel_1.setBounds(30, 20, 162, 38);
         mainPanel.add(lblNewLabel_1);
@@ -177,27 +175,17 @@ public class Payment_E_Wallet extends JFrame {
 
         btnSubmit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Check if the text field is empty
                 if (textField_1.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(container, "Please enter your mobile number.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else if (!chckbxNewCheckBox.isSelected()) {
-                    JOptionPane.showMessageDialog(container, "Please confirm your phone number.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(container, "Please confirm your mobile number.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
+                    // Get the subscription type
+                	//JOHN DAVID ETO PROBLEMA NAMIN!!!!!!
                     String subscriptionType = comboBox.getSelectedItem().toString();
-                            
-                    int subscriptionDuration = 0;
                     LocalDate startDate = LocalDate.now();
-                    LocalDate endDate = startDate;
+                    LocalDate endDate = startDate.plusDays(30);
                     
-                    if (subscriptionType.equals("Standard Plan")) {
-                        subscriptionDuration = 60; 
-                        endDate = startDate.plusDays(subscriptionDuration);
-                    } 
-                    else if (subscriptionType.equals("Premium Plan")) {
-                        subscriptionDuration = 92; 
-                        endDate = startDate.plusDays(subscriptionDuration);
-                    }
-
                     String message = "Payment Confirmed!\n\n" +
                             "Order: " + subscriptionType + "\nPayment Method: GCASH\n" +
                             "Subscription Start: " + startDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")) + "\n" +
@@ -206,6 +194,7 @@ public class Payment_E_Wallet extends JFrame {
                 }
             }
         });
+
 
 
 
