@@ -57,6 +57,9 @@ public class Account_Interface extends JFrame {
 		changePass.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		changePass.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				AccPass chPass = new AccPass();
+				chPass.setVisible(true);
+				
 			}
 		});
 		changePass.setBounds(44, 81, 576, 67);

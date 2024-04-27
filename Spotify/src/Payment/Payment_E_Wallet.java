@@ -13,9 +13,15 @@ public class Payment_E_Wallet extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel container;
-    private JTextField textField_1;
+    private JTextField mobileField;
     pmAction pmAct = new pmAction();
-
+	static final String DB_URL = "jdbc:mysql://localhost:3306/spotify";
+	static final String USER = "root";
+	static final String PASS = "Arslansenki00";
+	private JTextField uNameField;
+	private JTextField amountField;
+	String selectedSub = "";
+    
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -66,26 +72,18 @@ public class Payment_E_Wallet extends JFrame {
         mainPanel.add(lblChooseYourPlan);
 
         JPanel panel = new JPanel();
-        panel.setBounds(242, 334, 600, 233);
+        panel.setBounds(242, 334, 600, 337);
         mainPanel.add(panel);
         panel.setLayout(null);
 
-        textField_1 = new JTextField();
-        textField_1.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-        textField_1.setBounds(35, 60, 536, 45);
-        panel.add(textField_1);
-        textField_1.setColumns(10);
+        mobileField = new JTextField();
+        mobileField.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+        mobileField.setBounds(35, 48, 536, 45);
+        panel.add(mobileField);
+        mobileField.setColumns(10);
 
-        ((AbstractDocument) textField_1.getDocument()).setDocumentFilter(new DocumentFilter() {
-            
-            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
-                String newStr = fb.getDocument().getText(0, fb.getDocument().getLength()) + string;
-                if (newStr.matches("\\d{0,11}")) {
-                    super.insertString(fb, offset, string, attr);
-                }
-            }
-
-            
+        ((AbstractDocument) mobileField.getDocument()).setDocumentFilter(new DocumentFilter() {
+     
             public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
                 String newStr = fb.getDocument().getText(0, fb.getDocument().getLength()) + text;
                 if (newStr.matches("\\d{0,11}")) {
@@ -95,20 +93,54 @@ public class Payment_E_Wallet extends JFrame {
         });
 
         JLabel lblNewLabel = new JLabel("Enter your Mobile Number");
-        lblNewLabel.setBounds(25, 24, 207, 26);
+        lblNewLabel.setBounds(25, 11, 207, 26);
         panel.add(lblNewLabel);
         lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 15));
         lblNewLabel.setForeground(new Color(0, 0, 0));
 
         JButton btnSubmit = new JButton("SUBMIT");
         btnSubmit.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-        btnSubmit.setBounds(245, 162, 104, 35);
+        btnSubmit.setBounds(246, 291, 104, 35);
         panel.add(btnSubmit);
 
         final JCheckBox chckbxNewCheckBox = new JCheckBox("I agree that all my information is correct.");
         chckbxNewCheckBox.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-        chckbxNewCheckBox.setBounds(35, 123, 305, 21);
+        chckbxNewCheckBox.setBounds(35, 263, 305, 21);
         panel.add(chckbxNewCheckBox);
+        
+        uNameField = new JTextField();
+        uNameField.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+        uNameField.setColumns(10);
+        uNameField.setBounds(35, 129, 536, 45);
+        panel.add(uNameField);
+        
+        JLabel lblEnterYourName = new JLabel("Enter your Name");
+        lblEnterYourName.setForeground(Color.BLACK);
+        lblEnterYourName.setFont(new Font("Segoe UI", Font.BOLD, 15));
+        lblEnterYourName.setBounds(25, 99, 207, 26);
+        panel.add(lblEnterYourName);
+        
+        JLabel lblEnterAmount = new JLabel("Enter Amount");
+        lblEnterAmount.setForeground(Color.BLACK);
+        lblEnterAmount.setFont(new Font("Segoe UI", Font.BOLD, 15));
+        lblEnterAmount.setBounds(25, 174, 207, 26);
+        panel.add(lblEnterAmount);
+        
+        amountField = new JTextField();
+        amountField.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+        amountField.setColumns(10);
+        amountField.setBounds(35, 211, 536, 45);
+        panel.add(amountField);
+        
+        ((AbstractDocument) amountField.getDocument()).setDocumentFilter(new DocumentFilter() {
+            
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                String newStr = fb.getDocument().getText(0, fb.getDocument().getLength()) + text;
+                if (newStr.matches("\\d{0,11}")) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        });
 
         JPanel panel_1 = new JPanel();
         panel_1.setBackground(new Color(7, 125, 250));
@@ -127,37 +159,23 @@ public class Payment_E_Wallet extends JFrame {
         panel_1_1.setBounds(35, 60, 537, 79);
         panel_1.add(panel_1_1);
         
-                final JComboBox<String> comboBox = new JComboBox<String>(pmAct.getSubscriptions());
-                comboBox.setBounds(0, 0, 537, 79);
-                panel_1_1.add(comboBox);
-                comboBox.setFont(new Font("Tahoma", Font.BOLD, 24));
+        final JComboBox<Double> comboBox = new JComboBox<Double>(pmAct.getSubscriptions());
+        comboBox.setBounds(0, 0, 537, 79);
+        panel_1_1.add(comboBox);
+        comboBox.setFont(new Font("Tahoma", Font.BOLD, 24));
         comboBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JComboBox<String> combo = (JComboBox<String>) e.getSource();
-                String selectedSub = (String) combo.getSelectedItem();
-
-                switch (selectedSub) {
-                    case "149.00":
-                        LocalDate currentDate = LocalDate.now();
-                        LocalDate subscriptionEndDate = currentDate.plusDays(60);
-                        String messageStandard = "Payment Confirmed!\n\n" +
-                                "Subscription Type: Standard Plan\n" +
-                                "Subscription Start: " + currentDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")) + "\n" +
-                                "Subscription End: " + subscriptionEndDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")) + "\n" +
-                                "Payment Method: GCASH";
-                        JOptionPane.showMessageDialog(container, messageStandard);
-                        break;
-                    case "499.00":
-                        LocalDate currentDatePremium = LocalDate.now();
-                        LocalDate subscriptionEndDatePremium = currentDatePremium.plusDays(92);
-                        String messagePremium = "Payment Confirmed!\n\n" +
-                                "Subscription Type: Premium Plan\n" +
-                                "Subscription Start: " + currentDatePremium.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")) + "\n" +
-                                "Subscription End: " + subscriptionEndDatePremium.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")) + "\n" +
-                                "Payment Method: Premium Payment";
-                        JOptionPane.showMessageDialog(container, messagePremium);
-                        break;
+                JComboBox<Double> combo = (JComboBox<Double>) e.getSource();
+                double selectedSub =  (double) combo.getSelectedItem();
+                System.out.println(selectedSub);
+                
+                String subsType = "";
+                if (selectedSub == 199.00) {
+                    subsType = "Standard";
+                } else if (selectedSub == 699.00) {
+                    subsType = "Premium";
                 }
+                
             }
         });
 
@@ -175,28 +193,82 @@ public class Payment_E_Wallet extends JFrame {
 
         btnSubmit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (textField_1.getText().isEmpty()) {
+                Connection conn = null;
+                PreparedStatement pst = null;
+                PreparedStatement pst2 = null;
+                PreparedStatement pst3 = null;
+                PreparedStatement pst4 = null;
+                ResultSet rs = null;
+
+                if (mobileField.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(container, "Please enter your mobile number.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else if (!chckbxNewCheckBox.isSelected()) {
                     JOptionPane.showMessageDialog(container, "Please confirm your mobile number.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
                     // Get the subscription type
-                	//JOHN DAVID ETO PROBLEMA NAMIN!!!!!!
-                    String subscriptionType = comboBox.getSelectedItem().toString();
-                    LocalDate startDate = LocalDate.now();
-                    LocalDate endDate = startDate.plusDays(30);
+                    String username = uNameField.getText();
+                    String mobileNum = mobileField.getText();
+                    double price = (double) comboBox.getSelectedItem();
+                    double amount = Double.parseDouble(amountField.getText());
+                    double change = amount - price;
+                    String sql1 = "SELECT userId FROM user where username = ? ";
+                    String sql2 = "INSERT INTO gcashTrans (amount, userId, userNum, `change`) VALUES (?, ?, ?, ?)";
+                    String sql3 = "INSERT INTO `transaction` (userId) VALUES (?) ";
+                    String sql4 = "INSERT INTO subscription (subscription, startDate, startEnd, userId) VALUES (?, ?, ?, ?)";
                     
-                    String message = "Payment Confirmed!\n\n" +
-                            "Order: " + subscriptionType + "\nPayment Method: GCASH\n" +
-                            "Subscription Start: " + startDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")) + "\n" +
-                            "Subscription End: " + endDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
-                    JOptionPane.showMessageDialog(container, message);
+                    if (amount < price) {
+                        JOptionPane.showMessageDialog(null, "Please Enter the right amount");
+                    } else {
+                        try {
+                            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+                            pst = conn.prepareStatement(sql1);
+                            pst.setString(1, username);
+                            rs = pst.executeQuery();
+
+                            if (rs.next()) {
+                                int userId = rs.getInt("userId");
+
+                                pst2 = conn.prepareStatement(sql2);
+                                pst2.setDouble(1, amount);
+                                pst2.setInt(2, userId);
+                                pst2.setString(3, mobileNum);
+                                pst2.setDouble(4, change);
+
+                                String subsType = comboBox.getSelectedItem().toString();
+                                LocalDate startDate = LocalDate.now();
+                                LocalDate endDate = startDate.plusDays(30);
+
+                                int submitted = pst2.executeUpdate();
+
+                                if (submitted > 0) {
+                                    String message = "Payment Confirmed!\n\n" +
+                                            "Order: " + subsType + "\nPayment Method: GCASH\n" +
+                                            "Subscription Start: " + startDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")) + "\n" +
+                                            "Subscription End: " + endDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")) + "\n" +
+                                            "Change: " + change;
+                                    JOptionPane.showMessageDialog(container, message);
+
+                                    pst3 = conn.prepareStatement(sql3);
+                                    pst3.setInt(1, userId);
+                                    pst3.executeUpdate();
+                                    
+                                    pst4 = conn.prepareStatement(sql4);
+                                    pst4.setString(1, subsType);
+                                    pst4.setDate(2, java.sql.Date.valueOf(startDate)); 
+                                    pst4.setDate(3, java.sql.Date.valueOf(endDate));
+                                    pst4.setInt(4, userId);
+                                    pst4.executeUpdate();
+                                }
+                            } else {
+                                System.out.println("Username does not exist for username: " + username);
+                                JOptionPane.showMessageDialog(null, "Username does not exist");
+                            }
+                        } catch (SQLException exc) {
+                            exc.printStackTrace();
+                        }
+                    }
                 }
             }
         });
-
-
-
-
     }
 }

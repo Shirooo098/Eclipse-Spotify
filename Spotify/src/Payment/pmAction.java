@@ -2,15 +2,14 @@ package Payment;
 
 public class pmAction {
 
-	private String subscriptions[] = {"Standard P149.00", "Premium P499.00"};
+    private Double[] subscriptions = {149.00, 499.00};
 
-	public String[] getSubscriptions() {
-		return subscriptions;
-	}
+    public Double[] getSubscriptions() {
 
-	public void setSubscriptions(String[] subscriptions) {
-		this.subscriptions = subscriptions;
-	}
+        return subscriptions;
+    }
 
-
+    public void setSubscriptions(Double[] subscriptions) {
+        this.subscriptions = subscriptions;
+    }
 }

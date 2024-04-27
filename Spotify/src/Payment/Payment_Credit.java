@@ -194,13 +194,13 @@ public class Payment_Credit extends JFrame {
                         		mainPanel.add(txtS);
                         		txtS.setColumns(10);
                         		
-                        		JComboBox<String> comboBox = new JComboBox<String>(pmAct.getSubscriptions());
+                        		JComboBox<Double> comboBox = new JComboBox<Double>(pmAct.getSubscriptions());
                         		comboBox.setBounds(177, 365, 743, 90);
                         		comboBox.setBackground(new Color(255, 255, 255));
                         		comboBox.setFont(new Font("Tahoma", Font.BOLD, 24));
                         		comboBox.addActionListener(new ActionListener() {
                         			public void actionPerformed(ActionEvent e) {
-                        				JComboBox<String> combo = (JComboBox<String>) e.getSource();
+                        				JComboBox<Double> combo = (JComboBox<Double>) e.getSource();
                         				String selectedSub = (String) combo.getSelectedItem();
                         				
                         				switch (selectedSub) {

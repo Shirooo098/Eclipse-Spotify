@@ -146,8 +146,8 @@ public class Login_Interface extends JFrame {
 				try {
 					Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 					Statement stmt= conn.createStatement();
-					String sql = "SELECT * FROM user WHERE username = '"+username+"'"
-							+ " AND password = '"+password+"'";
+					String sql = "SELECT * FROM user WHERE username = '"+ logAct.getUsername() +"'"
+							+ " AND password = '"+ logAct.getPassword() +"'";
 					
 					ResultSet rs = stmt.executeQuery(sql);
 					

@@ -32,8 +32,8 @@ public class loginAction  {
 		
 	}
 
-	public String setUsername(String username) {
-		return this.username = username;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -41,8 +41,8 @@ public class loginAction  {
 	}
 
 
-	public String setPassword(String password) {
-		return this.password = password;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 
