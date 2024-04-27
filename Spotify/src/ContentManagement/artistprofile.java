@@ -62,7 +62,7 @@ public class artistprofile extends JFrame {
 		panel_1.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\WinDows10\\Pictures\\1.png"));
+		lblNewLabel.setIcon(new ImageIcon("/1.png"));
 		lblNewLabel.setBounds(35, 32, 125, 125);
 		panel_1.add(lblNewLabel);
 		
