@@ -213,7 +213,7 @@ public class Payment_E_Wallet extends JFrame {
                     double change = amount - price;
                     String sql1 = "SELECT userId FROM user where username = ? ";
                     String sql2 = "INSERT INTO gcashTrans (amount, userId, userNum, `change`) VALUES (?, ?, ?, ?)";
-                    String sql3 = "INSERT INTO `transaction` (userId) VALUES (?) ";
+                    String sql3 = "INSERT INTO `transaction` (userId, transacDate) VALUES (?, ?) ";
                     String sql4 = "INSERT INTO subscription (subscription, startDate, startEnd, userId) VALUES (?, ?, ?, ?)";
                     
                     if (amount < price) {
@@ -250,6 +250,7 @@ public class Payment_E_Wallet extends JFrame {
 
                                     pst3 = conn.prepareStatement(sql3);
                                     pst3.setInt(1, userId);
+                                    pst3.setDate(2, java.sql.Date.valueOf(startDate));
                                     pst3.executeUpdate();
                                     
                                     pst4 = conn.prepareStatement(sql4);
